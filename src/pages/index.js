@@ -6,12 +6,11 @@ import Layout from "../templates/layout"
 import RichText from "../components/richText"
 import SEO from "../components/seo"
 
-const IndexPage = ({
+const Index = ({
   data: {
     prismic: { home },
   },
 }) => {
-  console.log(home)
   return (
     <Layout>
       <SEO title="Home" />
@@ -24,11 +23,11 @@ const IndexPage = ({
   )
 }
 
-IndexPage.propTypes = {
+Index.propTypes = {
   data: PropTypes.object,
 }
 
-export default IndexPage
+export default Index
 
 export const indexQuery = graphql`
   query Home {

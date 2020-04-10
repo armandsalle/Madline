@@ -43,7 +43,9 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <img src={data.logo.url} alt={data.logo?.alt} width="100" />
+      <Link to="/">
+        <img src={data.logo.url} alt={data.logo?.alt} width="100" />
+      </Link>
       <p>Menu</p>
       <p>A propos</p>
       <nav>
