@@ -1,8 +1,10 @@
 import React from "react"
+import PropTypes from "prop-types"
 import { graphql } from "gatsby"
-import Layout from "../components/layout"
+
+import Layout from "../templates/layout"
+import RichText from "../components/richText"
 import SEO from "../components/seo"
-import Article from "../components/article"
 
 const IndexPage = ({
   data: {
@@ -13,10 +15,17 @@ const IndexPage = ({
   return (
     <Layout>
       <SEO title="Home" />
-      <h1>{home.subTitle}</h1>
-      <Article />
+      <RichText data={home.heroTitle} />
+      <p>{home.subTitle}</p>
+      {home.heroPhotos.map((el, i) => (
+        <img key={i} src={el.image.url} alt={el.image?.alt} width="100" />
+      ))}
     </Layout>
   )
+}
+
+IndexPage.propTypes = {
+  data: PropTypes.object,
 }
 
 export default IndexPage
