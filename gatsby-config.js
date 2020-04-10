@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -6,11 +10,20 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sass`,
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: "gatsby-source-prismic-graphql",
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
+        repositoryName: process.env.PRISMIC_REPOSITORY_NAME, // required
+        defaultLang: "fr-fr", // optional, but recommended
+        accessToken: process.env.PRISMIC_ACCESS_TOKEN, // optional
+        // pages: [{ // optional
+        //   type: 'Article', // TypeName from prismic
+        //   match: '/article/:uid', // pages will be generated under this pattern (optional)
+        //   path: '/article', // placeholder page for unpublished documents
+        //   component: require.resolve('./src/templates/article.js'),
+        //   sortBy: 'date_ASC', // optional, default: meta_lastPublicationDate_ASC; useful for pagination
+        // }],
       },
     },
     `gatsby-transformer-sharp`,
