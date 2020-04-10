@@ -55,7 +55,9 @@ const Layout = ({ children }) => {
             <ul>
               {categoriesList.map(cat => (
                 <li key={cat}>
-                  <Link to={`/gallery/${cat}`}>{cat}</Link>
+                  <Link to="/gallery" state={{ cat }}>
+                    {cat}
+                  </Link>
                 </li>
               ))}
               <li>

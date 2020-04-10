@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import RichText from "../components/richText"
 
-const serviceItem = ({
+const ServiceItem = ({
   image,
   icone,
   title,
@@ -44,7 +44,7 @@ const iconeShape = PropTypes.shape({
   url: PropTypes.string,
 })
 
-serviceItem.propTypes = {
+ServiceItem.propTypes = {
   description: PropTypes.arrayOf(spanstexttypeShape),
   icone: iconeShape,
   image: iconeShape,
@@ -54,4 +54,4 @@ serviceItem.propTypes = {
   title: PropTypes.string,
 }
 
-export default serviceItem
+export default ServiceItem

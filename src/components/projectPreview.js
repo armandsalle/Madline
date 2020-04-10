@@ -2,10 +2,10 @@ import React from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
 
-const projectPreview = ({ date, place, thumbnail, title, _meta: { uid } }) => {
+const ProjectPreview = ({ date, place, thumbnail, title, _meta: { uid } }) => {
   return (
     <div>
-      <Link to={`gallery/${uid}`}>
+      <Link to={`/gallery/${uid}`}>
         <h1>{title}</h1>
         <p>{date}</p>
         <p>{place}</p>
@@ -15,7 +15,7 @@ const projectPreview = ({ date, place, thumbnail, title, _meta: { uid } }) => {
   )
 }
 
-projectPreview.propTypes = {
+ProjectPreview.propTypes = {
   _meta: PropTypes.shape({
     uid: PropTypes.string,
   }),
@@ -34,4 +34,4 @@ projectPreview.propTypes = {
   title: PropTypes.string,
 }
 
-export default projectPreview
+export default ProjectPreview

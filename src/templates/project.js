@@ -1,11 +1,12 @@
 import React from "react"
+import Layout from "./layout"
 
-const project = () => {
+const Project = () => {
   return (
-    <div>
+    <Layout>
       <h1>hello</h1>
-    </div>
+    </Layout>
   )
 }
 
-export default project
+export default Project

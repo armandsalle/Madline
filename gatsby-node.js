@@ -14,6 +14,7 @@ exports.createPages = async ({ graphql, actions }) => {
         allProjets {
           edges {
             node {
+              password
               _meta {
                 uid
               }
@@ -23,17 +24,27 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `)
-  console.log(pages)
 
   const template = path.resolve("src/templates/project.js")
+  const privateTemplate = path.resolve("src/templates/privateProject.js")
 
   pages.data.prismic.allProjets.edges.forEach(edge => {
-    createPage({
-      path: `/gallery/${edge.node._meta.uid}`,
-      component: template,
-      context: {
-        uid: edge.node._meta.uid,
-      },
-    })
+    if (!!edge.node.password) {
+      createPage({
+        path: `/gallery/private/${edge.node._meta.uid}`,
+        component: privateTemplate,
+        context: {
+          uid: edge.node._meta.uid,
+        },
+      })
+    } else {
+      createPage({
+        path: `/gallery/${edge.node._meta.uid}`,
+        component: template,
+        context: {
+          uid: edge.node._meta.uid,
+        },
+      })
+    }
   })
 }

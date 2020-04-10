@@ -16,9 +16,9 @@ const Gallery = ({
   return (
     <Layout>
       <SEO title={galerie.pageTitle} description={galerie.description} />
-      {data.map((el, i) => (
-        <ProjectPreview key={i} {...el.node} />
-      ))}
+      {data.map(
+        (el, i) => !el.node.password && <ProjectPreview key={i} {...el.node} />
+      )}
     </Layout>
   )
 }
