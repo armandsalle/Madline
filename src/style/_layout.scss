@@ -1,0 +1,88 @@
+.layout {
+  .header {
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+
+    &__left,
+    &__right {
+      width: 14rem;
+      height: 100%;
+      padding: 3.5rem 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-self: center;
+      text-align: center;
+    }
+
+    &__logo {
+      max-width: 12rem;
+      width: 100%;
+    }
+
+    &__about {
+      font-family: inherit;
+      font-size: 1.6rem;
+    }
+  }
+
+  .about,
+  .nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 998;
+    background-color: var(--color-beige);
+    display: none;
+  }
+
+  .about.visible {
+    display: block;
+  }
+
+  .about .content {
+    margin: 20rem auto;
+    max-width: 50rem;
+    position: relative;
+
+    h2 {
+      font-family: "Alexander Lettering";
+      font-size: 7.5rem;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 2rem;
+    }
+
+    .richtext {
+      color: var(--color-grey);
+    }
+
+    img {
+      position: absolute;
+      top: 10rem;
+      right: -7rem;
+      width: 28rem;
+      z-index: -1;
+      opacity: 0.5;
+    }
+  }
+
+  .container {
+    width: calc(100vw - 280px);
+    min-height: 100vh;
+    margin: 0 auto;
+    background-color: #fff;
+  }
+
+  //   .container.home {
+  //     width: 100vw;
+  //   }
+}

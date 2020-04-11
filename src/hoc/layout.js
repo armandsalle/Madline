@@ -1,9 +1,11 @@
-import React from "react"
+import React, { useState } from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql, Link } from "gatsby"
-import RichText from "../components/richText"
+import cn from "classnames"
+import "../style/main.scss"
+import About from "../components/about"
 
-const Layout = ({ children }) => {
+const Layout = ({ children, isIndex }) => {
   const {
     prismic: { layout, categories },
   } = useStaticQuery(graphql`
@@ -34,14 +36,37 @@ const Layout = ({ children }) => {
     ...new Set(categories.edges.map(el => el.node.categorie)),
   ]
 
+  const [aboutIsOpen, setAbout] = useState(false)
+
   return (
-    <>
-      <Link to="/">
-        <img src={layout.logo.url} alt={layout.logo?.alt} width="100" />
-      </Link>
-      <p>Menu</p>
-      <p>A propos</p>
-      <nav>
+    <div className="layout">
+      <header className="header">
+        <div className="header__left">
+          <Link to="/">
+            <img
+              src={layout.logo.url}
+              alt={layout.logo?.alt}
+              className="header__logo"
+            />
+          </Link>
+          <button
+            className="header__about"
+            onClick={() => setAbout(!aboutIsOpen)}
+          >
+            A propos
+          </button>
+        </div>
+
+        <div className="header__right">
+          <p className="header__menu">Menu</p>
+        </div>
+      </header>
+
+      <div className={cn("container", { home: isIndex })}>{children}</div>
+
+      <About {...layout} open={aboutIsOpen} />
+
+      <nav className="nav">
         <ul>
           <li>
             Galerie
@@ -66,15 +91,7 @@ const Layout = ({ children }) => {
           </li>
         </ul>
       </nav>
-      {children}
-      <h2>{layout.aboutTitle}</h2>
-      <RichText data={layout.aboutText} />
-      <img
-        src={layout.backgroundImage.url}
-        alt={layout.backgroundImage?.alt}
-        width="100"
-      />
-    </>
+    </div>
   )
 }
 

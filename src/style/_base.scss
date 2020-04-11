@@ -1,0 +1,55 @@
+@import "fonts";
+
+:root {
+  --color-black: #24211c;
+  --color-beige: #fffaf6;
+  --color-grey: #7d776f;
+}
+
+$bp-largest: 75em; //1200px
+$bp-large: 68.75em; //1100px
+$bp-medium: 56.25em; //900px
+$bp-small: 37.5em; //600px
+$bp-smallest: 31.25em; //500px
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; //1rem = 10px, 10px/16px = 62.5%
+
+  @media only screen and (max-width: $bp-small) {
+    font-size: 50%;
+  }
+}
+
+body {
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: var(--color-black);
+  background-color: var(--color-beige);
+  min-height: 100vh;
+  max-width: 100vw;
+  overflow-x: hidden;
+  // font-smoothing: subpixel-antialiased;
+}
+
+.richtext {
+  p {
+    margin-bottom: 2rem;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 1.6;
+  }
+}

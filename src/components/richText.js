@@ -6,7 +6,7 @@ import { linkResolver } from "../utils/linkResolver"
 const CustomRichText = ({ data }) => {
   if (!data) return null
 
-  return <>{RichText.render(data, linkResolver)}</>
+  return <div className="richtext">{RichText.render(data, linkResolver)}</div>
 }
 
 CustomRichText.propTypes = {

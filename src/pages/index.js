@@ -11,7 +11,7 @@ const Index = ({
   },
 }) => {
   return (
-    <Layout>
+    <Layout isIndex>
       <SEO title="Home" />
       <RichText data={home.heroTitle} />
       <p>{home.subTitle}</p>
