@@ -10,8 +10,13 @@ const Gallery = ({
   data: {
     prismic: { projets, galerie },
   },
+  pageContext,
 }) => {
-  const data = projets.edges
+  const data = pageContext.uid
+    ? projets.edges.filter(
+        el => el.node.categorie.toLowerCase() === pageContext.uid
+      )
+    : projets.edges
 
   return (
     <Layout>

@@ -55,7 +55,7 @@ const Layout = ({ children }) => {
             <ul>
               {categoriesList.map(cat => (
                 <li key={cat}>
-                  <Link to="/gallery" state={{ cat }}>
+                  <Link to={`/gallery/${cat.toLowerCase()}`} state={{ cat }}>
                     {cat}
                   </Link>
                 </li>

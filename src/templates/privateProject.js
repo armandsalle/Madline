@@ -4,14 +4,14 @@ import Layout from "../hoc/layout"
 
 const PrivateProject = ({
   data: {
-    prismic: { projet },
+    prismic: { privateProject },
   },
 }) => {
   const [clientPassword, setPassword] = useState("")
   const [isCorrect, setCorrect] = useState(false)
   const [hasError, setError] = useState(false)
 
-  const data = projet.edges[0].node
+  const data = privateProject.edges[0].node
 
   const handleChange = e => {
     if (hasError) {
@@ -51,9 +51,9 @@ const PrivateProject = ({
 export default PrivateProject
 
 export const pageQuery = graphql`
-  query Projet($uid: String!) {
+  query PrivateProject($uid: String!) {
     prismic {
-      projet: allProjets(uid: $uid) {
+      privateProject: allProjets(uid: $uid) {
         edges {
           node {
             password
