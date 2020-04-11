@@ -33,13 +33,17 @@ const PrivateProject = ({
 
   return (
     <div>
-      <input
-        type="text"
-        placeholder="mot de passe"
-        value={clientPassword}
-        onChange={e => handleChange(e)}
-      />
-      <button onClick={checkPassword}>Acceder</button>
+      {!isCorrect && (
+        <>
+          <input
+            type="text"
+            placeholder="mot de passe"
+            value={clientPassword}
+            onChange={e => handleChange(e)}
+          />
+          <button onClick={checkPassword}>Acceder</button>
+        </>
+      )}
 
       {isCorrect && (
         <Layout>
