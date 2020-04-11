@@ -1,5 +1,4 @@
 import React from "react"
-
 import ImageLandscape from "./slices/imageLandscape"
 import ImageLandscapeFull from "./slices/imageLandscapeFull"
 import Description from "./slices/description"

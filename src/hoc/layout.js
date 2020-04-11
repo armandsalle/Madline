@@ -9,20 +9,15 @@ const Layout = ({ children }) => {
   } = useStaticQuery(graphql`
     query Layout {
       prismic {
-        layout: allLayouts(uid: "layout") {
-          edges {
-            node {
-              title
-              logo
-              aboutTitle
-              aboutText
-              backgroundImage
-              siteTitle
-              siteDescription
-              shareImage
-              _linkType
-            }
-          }
+        layout(lang: "fr-fr", uid: "layout") {
+          title
+          logo
+          aboutTitle
+          aboutText
+          backgroundImage
+          siteTitle
+          siteDescription
+          shareImage
         }
         categories: allProjets {
           edges {
@@ -35,8 +30,6 @@ const Layout = ({ children }) => {
     }
   `)
 
-  const data = layout.edges[0].node
-
   const categoriesList = [
     ...new Set(categories.edges.map(el => el.node.categorie)),
   ]
@@ -44,7 +37,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <Link to="/">
-        <img src={data.logo.url} alt={data.logo?.alt} width="100" />
+        <img src={layout.logo.url} alt={layout.logo?.alt} width="100" />
       </Link>
       <p>Menu</p>
       <p>A propos</p>
@@ -74,11 +67,11 @@ const Layout = ({ children }) => {
         </ul>
       </nav>
       {children}
-      <h2>{data.aboutTitle}</h2>
-      <RichText data={data.aboutText} />
+      <h2>{layout.aboutTitle}</h2>
+      <RichText data={layout.aboutText} />
       <img
-        src={data.backgroundImage.url}
-        alt={data.backgroundImage?.alt}
+        src={layout.backgroundImage.url}
+        alt={layout.backgroundImage?.alt}
         width="100"
       />
     </>

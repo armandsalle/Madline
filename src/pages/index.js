@@ -1,7 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { graphql } from "gatsby"
-
 import Layout from "../hoc/layout"
 import RichText from "../components/richText"
 import SEO from "../components/seo"

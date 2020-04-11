@@ -9,8 +9,8 @@ const Project = ({
     prismic: { project },
   },
 }) => {
-  const data = project.edges[0].node
-  console.log(data)
+  const data = project.edges.slice(0, 1).pop().node
+
   return (
     <Layout>
       <h1>{data.title}</h1>
