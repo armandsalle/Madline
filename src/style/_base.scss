@@ -41,8 +41,11 @@ body {
   background-color: var(--color-beige);
   min-height: 100vh;
   max-width: 100vw;
-  overflow-x: hidden;
   // font-smoothing: subpixel-antialiased;
+}
+
+body.modal-open {
+  overflow: hidden;
 }
 
 .richtext {
@@ -50,6 +53,6 @@ body {
     margin-bottom: 2rem;
     font-weight: 400;
     font-size: 1.6rem;
-    line-height: 1.6;
+    line-height: 1.8;
   }
 }

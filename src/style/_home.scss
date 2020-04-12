@@ -1,0 +1,43 @@
+.home {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .grid-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2vw;
+    img {
+      width: 19vw;
+      max-height: 50vh;
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    .col-left {
+      margin-left: 2vw;
+      img {
+        display: block;
+        &:first-of-type {
+          margin-bottom: 2vw;
+        }
+      }
+    }
+  }
+
+  &-title {
+    h1 {
+      font-weight: 400;
+      font-size: 3.7vw;
+      line-height: 1.2;
+      max-width: 47vw;
+    }
+  }
+  &-subTitle {
+    font-size: 1.4vw;
+    margin-top: 1rem;
+    font-weight: 300;
+  }
+}

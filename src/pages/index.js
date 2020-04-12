@@ -3,7 +3,6 @@ import PropTypes from "prop-types"
 import { graphql } from "gatsby"
 import Layout from "../hoc/layout"
 import RichText from "../components/richText"
-import SEO from "../components/seo"
 
 const Index = ({
   data: {
@@ -12,12 +11,30 @@ const Index = ({
 }) => {
   return (
     <Layout isIndex>
-      <SEO title="Home" />
-      <RichText data={home.heroTitle} />
-      <p>{home.subTitle}</p>
-      {home.heroPhotos.map((el, i) => (
-        <img key={i} src={el.image.url} alt={el.image?.alt} width="100" />
-      ))}
+      <div className="home">
+        <div className="grid-img">
+          {home.heroPhotos.map((el, i) => (
+            <>
+              {i === 0 ? (
+                <img key={i} src={el.image.url} alt={el.image?.alt} />
+              ) : null}
+            </>
+          ))}
+          <div className="col-left">
+            {home.heroPhotos.map((el, i) => (
+              <>
+                {i !== 0 ? (
+                  <img src={el.image.url} alt={el.image?.alt} key={i} />
+                ) : null}
+              </>
+            ))}
+          </div>
+        </div>
+        <div className="home-title">
+          <RichText data={home.heroTitle} />
+          <p className="home-subTitle">{home.subTitle}</p>
+        </div>
+      </div>
     </Layout>
   )
 }

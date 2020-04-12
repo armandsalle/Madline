@@ -4,6 +4,7 @@ import { useStaticQuery, graphql, Link } from "gatsby"
 import cn from "classnames"
 import "../style/main.scss"
 import About from "../components/about"
+import Nav from "../components/nav"
 
 const Layout = ({ children, isIndex }) => {
   const {
@@ -37,60 +38,46 @@ const Layout = ({ children, isIndex }) => {
   ]
 
   const [aboutIsOpen, setAbout] = useState(false)
+  const [menuIsOpen, setMenu] = useState(false)
+  const body = document.querySelector("body")
+
+  const handleAbout = () => {
+    setAbout(!aboutIsOpen)
+    body.classList.toggle("modal-open")
+  }
+
+  const handleMenu = () => {
+    setMenu(!menuIsOpen)
+    body.classList.toggle("modal-open")
+  }
+
+  const closeModals = () => {
+    setAbout(false)
+    setMenu(false)
+  }
 
   return (
     <div className="layout">
-      <header className="header">
-        <div className="header__left">
-          <Link to="/">
-            <img
-              src={layout.logo.url}
-              alt={layout.logo?.alt}
-              className="header__logo"
-            />
-          </Link>
-          <button
-            className="header__about"
-            onClick={() => setAbout(!aboutIsOpen)}
-          >
-            A propos
-          </button>
-        </div>
+      <Link to="/" className="header__logo" onClick={closeModals}>
+        <img src={layout.logo.url} alt={layout.logo?.alt} />
+      </Link>
 
-        <div className="header__right">
-          <p className="header__menu">Menu</p>
-        </div>
-      </header>
+      {!menuIsOpen && (
+        <button className="header__about" onClick={handleAbout}>
+          {aboutIsOpen ? "Fermer" : "À propos"}
+        </button>
+      )}
 
-      <div className={cn("container", { home: isIndex })}>{children}</div>
+      {!aboutIsOpen && (
+        <button className="header__menu" onClick={handleMenu}>
+          {menuIsOpen ? "Fermer" : "Menu"}
+        </button>
+      )}
+
+      <div className={cn("container", { index: isIndex })}>{children}</div>
 
       <About {...layout} open={aboutIsOpen} />
-
-      <nav className="nav">
-        <ul>
-          <li>
-            Galerie
-            <ul>
-              {categoriesList.map(cat => (
-                <li key={cat}>
-                  <Link to={`/gallery/${cat.toLowerCase()}`} state={{ cat }}>
-                    {cat}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <Link to="/gallery">Tout</Link>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <Link to="/services">Services</Link>
-          </li>
-          <li>
-            <Link to="/contact">Contact</Link>
-          </li>
-        </ul>
-      </nav>
+      <Nav categoriesList={categoriesList} open={menuIsOpen} />
     </div>
   )
 }
