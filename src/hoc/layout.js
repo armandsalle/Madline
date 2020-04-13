@@ -5,6 +5,7 @@ import cn from "classnames"
 import "../style/main.scss"
 import About from "../components/about"
 import Nav from "../components/nav"
+// import { globalHistory } from "@reach/router/lib/history"
 
 const Layout = ({ children, isIndex }) => {
   const {
@@ -37,23 +38,92 @@ const Layout = ({ children, isIndex }) => {
     ...new Set(categories.edges.map(el => el.node.categorie)),
   ]
 
-  const [aboutIsOpen, setAbout] = useState(false)
-  const [menuIsOpen, setMenu] = useState(false)
+  // State
+  const [about, setAbout] = useState({
+    initial: false,
+    clicked: null,
+    text: "À propos",
+  })
+  const [menu, setMenu] = useState({
+    initial: false,
+    clicked: null,
+    text: "Menu",
+  })
+
+  const [disableAbout, setDisableAbout] = useState(false)
+  const [disableMenu, setDisableMenu] = useState(false)
+
+  // Methods
   const body = document.querySelector("body")
 
   const handleAbout = () => {
-    setAbout(!aboutIsOpen)
-    body.classList.toggle("modal-open")
+    handleDisableAbout()
+
+    if (about.initial === false) {
+      body.classList.add("modal-open")
+      setAbout({
+        initial: null,
+        clicked: true,
+        text: "Fermer",
+      })
+    } else if (about.clicked === true) {
+      setAbout({
+        clicked: !about.clicked,
+        text: "À propos",
+      })
+      body.classList.remove("modal-open")
+    } else if (about.clicked === false) {
+      setAbout({
+        clicked: !about.clicked,
+        text: "Fermer",
+      })
+      body.classList.add("modal-open")
+    }
   }
 
   const handleMenu = () => {
-    setMenu(!menuIsOpen)
-    body.classList.toggle("modal-open")
+    handleDisableMenu()
+
+    if (menu.initial === false) {
+      body.classList.add("modal-open")
+      setMenu({
+        initial: null,
+        clicked: true,
+        text: "Fermer",
+      })
+    } else if (menu.clicked === true) {
+      setMenu({
+        clicked: !menu.clicked,
+        text: "Menu",
+      })
+      body.classList.remove("modal-open")
+    } else if (menu.clicked === false) {
+      setMenu({
+        clicked: !menu.clicked,
+        text: "Fermer",
+      })
+      body.classList.add("modal-open")
+    }
   }
 
   const closeModals = () => {
-    setAbout(false)
-    setMenu(false)
+    body.classList.remove("modal-open")
+    setAbout({ clicked: false, text: "À propos" })
+    setMenu({ clicked: false, text: "Menu" })
+  }
+
+  const handleDisableAbout = () => {
+    setDisableAbout(true)
+    setTimeout(() => {
+      setDisableAbout(false)
+    }, 1000)
+  }
+
+  const handleDisableMenu = () => {
+    setDisableMenu(true)
+    setTimeout(() => {
+      setDisableMenu(false)
+    }, 1000)
   }
 
   return (
@@ -62,22 +132,26 @@ const Layout = ({ children, isIndex }) => {
         <img src={layout.logo.url} alt={layout.logo?.alt} />
       </Link>
 
-      {!menuIsOpen && (
-        <button className="header__about" onClick={handleAbout}>
-          {aboutIsOpen ? "Fermer" : "À propos"}
-        </button>
-      )}
+      <button
+        disabled={disableAbout}
+        className="header__about"
+        onClick={handleAbout}
+      >
+        {about.text}
+      </button>
 
-      {!aboutIsOpen && (
-        <button className="header__menu" onClick={handleMenu}>
-          {menuIsOpen ? "Fermer" : "Menu"}
-        </button>
-      )}
+      <button
+        disabled={disableMenu}
+        className="header__menu"
+        onClick={handleMenu}
+      >
+        {menu.text}
+      </button>
 
       <div className={cn("container", { index: isIndex })}>{children}</div>
 
-      <About {...layout} open={aboutIsOpen} />
-      <Nav categoriesList={categoriesList} open={menuIsOpen} />
+      <About {...layout} state={about} />
+      <Nav categoriesList={categoriesList} state={menu} />
     </div>
   )
 }

@@ -2,9 +2,9 @@ import React from "react"
 import RichText from "../components/richText"
 import cn from "classnames"
 
-const About = ({ aboutTitle, aboutText, backgroundImage, open }) => {
+const About = ({ aboutTitle, aboutText, backgroundImage, state }) => {
   return (
-    <section className={cn("about", { visible: open })}>
+    <section className={cn("about", { visible: state.clicked })}>
       <div className="content">
         <h2>{aboutTitle}</h2>
         <RichText data={aboutText} />

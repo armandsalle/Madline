@@ -8,6 +8,7 @@ const PrivateProject = ({
   data: {
     prismic: { privateProject },
   },
+  location,
 }) => {
   const [clientPassword, setPassword] = useState("")
   const [isCorrect, setCorrect] = useState(false)

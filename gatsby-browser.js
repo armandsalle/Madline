@@ -38,3 +38,7 @@ registerLinkResolver(linkResolver)
 //     </>
 //   )
 // }
+
+exports.onRouteUpdate = ({ location, prevLocation }) => {
+  document.querySelector("body").classList.remove("modal-open")
+}

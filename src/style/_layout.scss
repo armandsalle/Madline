@@ -1,14 +1,21 @@
 .layout {
+
   .header__logo,
   .header__menu,
   .header__about {
     z-index: 999;
     position: fixed;
+
+    &:disabled {
+      opacity: 1;
+      color: var(--color-black);
+    }
   }
 
   .header__logo {
     left: 1rem;
     top: 3.5rem;
+
     img {
       max-width: 12rem;
       width: 100%;
@@ -61,6 +68,7 @@
   .nav {
     justify-content: center;
     align-self: center;
+
     ul {
       list-style: none;
       display: flex;
@@ -71,26 +79,40 @@
     }
 
     &__list {
+
       padding: 0 3vw;
+
       li {
         font-size: 4vw;
         line-height: 1.2;
         margin-bottom: 2vw;
+        overflow: hidden;
+
 
         a {
           text-decoration: none;
           color: inherit;
           cursor: pointer;
+          display: inline-block;
         }
       }
     }
 
     &__gallery {
+      cursor: pointer;
+
+      p {
+        display: inline-block;
+      }
+
       ul {
         position: absolute;
         right: 0;
-        top: 2vw;
+        top: 1.5vw;
         transform: translateX(110%);
+        opacity: 1;
+        display: none;
+
         li {
           font-size: 2vw;
           margin-bottom: 1vw;

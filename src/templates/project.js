@@ -8,6 +8,7 @@ const Project = ({
   data: {
     prismic: { project },
   },
+  location,
 }) => {
   const data = project.edges.slice(0, 1).pop().node
 

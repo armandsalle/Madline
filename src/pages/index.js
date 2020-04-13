@@ -13,21 +13,17 @@ const Index = ({
     <Layout isIndex>
       <div className="home">
         <div className="grid-img">
-          {home.heroPhotos.map((el, i) => (
-            <>
-              {i === 0 ? (
-                <img key={i} src={el.image.url} alt={el.image?.alt} />
-              ) : null}
-            </>
-          ))}
+          {home.heroPhotos.map((el, i) => {
+            return i === 0 ? (
+              <img key={i} src={el.image.url} alt={el.image?.alt} />
+            ) : null
+          })}
           <div className="col-left">
-            {home.heroPhotos.map((el, i) => (
-              <>
-                {i !== 0 ? (
-                  <img src={el.image.url} alt={el.image?.alt} key={i} />
-                ) : null}
-              </>
-            ))}
+            {home.heroPhotos.map((el, i) => {
+              return i !== 0 ? (
+                <img src={el.image.url} alt={el.image?.alt} key={i} />
+              ) : null
+            })}
           </div>
         </div>
         <div className="home-title">
