@@ -132,21 +132,25 @@ const Layout = ({ children, isIndex }) => {
         <img src={layout.logo.url} alt={layout.logo?.alt} />
       </Link>
 
-      <button
-        disabled={disableAbout}
-        className="header__about"
-        onClick={handleAbout}
-      >
-        {about.text}
-      </button>
+      {!menu.clicked && (
+        <button
+          disabled={disableAbout}
+          className="header__about"
+          onClick={handleAbout}
+        >
+          {about.text}
+        </button>
+      )}
 
-      <button
-        disabled={disableMenu}
-        className="header__menu"
-        onClick={handleMenu}
-      >
-        {menu.text}
-      </button>
+      {!about.clicked && (
+        <button
+          disabled={disableMenu}
+          className="header__menu"
+          onClick={handleMenu}
+        >
+          {menu.text}
+        </button>
+      )}
 
       <div className={cn("container", { index: isIndex })}>{children}</div>
 
