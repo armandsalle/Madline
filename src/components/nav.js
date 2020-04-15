@@ -16,7 +16,7 @@ const Nav = ({ categoriesList, state }) => {
     })
 
     const tl = gsap.timeline({ paused: true })
-    tl.to(".nav", { opacity: 1, duration: 0.2, ease: "power3.inOut" }).to(
+    tl.to(".nav", { opacity: 1, duration: 0.1, ease: "power3.inOut" }).to(
       [".nav__list li p", ".nav__list li a"],
       {
         opacity: 1,
@@ -42,7 +42,7 @@ const Nav = ({ categoriesList, state }) => {
       ease: "power3.inOut",
       duration: 0.3,
     })
-      .to(".nav", { opacity: 0, duration: 0.2, ease: "power3.inOut" })
+      .to(".nav", { opacity: 0, duration: 0.1, ease: "power3.inOut" })
       .set(".nav", { display: "none" })
 
     return tl

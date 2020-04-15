@@ -19,6 +19,7 @@
         overflow: hidden;
         margin-bottom: 2rem;
         padding-left: .4rem;
+        max-width: 51rem;
 
         h1 {
             font-family: "Alexander Lettering";
@@ -45,21 +46,22 @@
 
     .bg-image {
         position: absolute;
-        width: 28rem;
-        height: 28rem;
+        width: 20rem;
+        height: 20rem;
         object-fit: contain;
         object-position: center;
         top: 7rem;
-        left: 17rem;
+        right: -4rem;
         z-index: -1;
         opacity: .8;
 
         @media screen and (max-width: $bp-large) {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             width: 15rem;
             height: 15rem;
+        }
+
+        @media screen and (max-width: $bp-medium) {
+            top: 12rem;
         }
     }
 }

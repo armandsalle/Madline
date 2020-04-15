@@ -1,6 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 @font-face {
-    font-family: "Alexander Lettering";
-    src: url('../static/fonts/Alexander/Alexander\ Lettering.ttf') format("ttf");
+    font-family: 'Alexander Lettering';
+    src: url('../static/fonts/Alexander/AlexanderLettering.eot');
+    src: local('Alexander Lettering'), local('AlexanderLettering'),
+        url('../static/fonts/Alexander/AlexanderLettering.eot?#iefix') format('embedded-opentype'),
+        url('../static/fonts/Alexander/AlexanderLettering.woff2') format('woff2'),
+        url('../static/fonts/Alexander/AlexanderLettering.woff') format('woff'),
+        url('../static/fonts/Alexander/AlexanderLettering.ttf') format('truetype'),
+        url('../static/fonts/Alexander/AlexanderLettering.svg#AlexanderLettering') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
