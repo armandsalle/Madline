@@ -3,7 +3,6 @@ import PropTypes from "prop-types"
 import { graphql } from "gatsby"
 import Layout from "../hoc/layout"
 import RichText from "../components/richText"
-import SEO from "../components/seo"
 
 const Contact = ({
   data: {
@@ -12,14 +11,19 @@ const Contact = ({
 }) => {
   return (
     <Layout>
-      <SEO title={contact.pageTitle} />
-      <h1>{contact.title}</h1>
-      <RichText data={contact.description} />
-      <img
-        src={contact.backgroundImage.url}
-        alt={contact.backgroundImage?.alt}
-        width="100"
-      />
+      <div className="contact">
+        <div className="content">
+          <div className="title">
+            <h1>{contact.title}</h1>
+          </div>
+          <RichText data={contact.description} className="description" />
+          <img
+            src={contact.backgroundImage.url}
+            alt={contact.backgroundImage?.alt}
+            className="bg-image"
+          />
+        </div>
+      </div>
     </Layout>
   )
 }

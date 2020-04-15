@@ -110,7 +110,10 @@ const Nav = ({ categoriesList, state }) => {
   useEffect(() => {
     if (state.clicked === false) {
       if (hasCategoriesVisible) {
-        hideCat().play()
+        if (window.innerWidth >= 700) {
+          hideCat().play()
+        }
+
         setCategoriesVisible(false)
       }
       hideMenu().play()
@@ -124,23 +127,22 @@ const Nav = ({ categoriesList, state }) => {
 
   const handleCategories = () => {
     if (hasCategoriesVisible) {
-      hideCat().play()
-      setCategoriesVisible(false)
+      return
     } else {
-      showCat().play()
-      setCategoriesVisible(true)
+      if (window.innerWidth >= 700) {
+        showCat().play()
+      }
     }
+    setCategoriesVisible(true)
   }
 
   return (
     <nav ref={nav} className="nav">
       <ul className="nav__list">
-        <li
-          className="nav__gallery"
-          onMouseEnter={handleCategories}
-          onMouseLeave={handleCategories}
-        >
-          <p className="gallery-titre">Galerie</p>
+        <li className="nav__gallery">
+          <p className="gallery-titre" onMouseEnter={handleCategories}>
+            Galerie
+          </p>
           <ul ref={categoriesUl}>
             {categoriesList.map(cat => (
               <li key={cat}>

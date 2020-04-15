@@ -1,0 +1,65 @@
+.contact {
+    width: 100%;
+    min-height: calc(100vh - 20rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    @media screen and (max-width: $bp-large) {
+        margin-top: 2rem;
+    }
+
+
+    .content {
+        position: relative;
+    }
+
+    .title {
+        overflow: hidden;
+        margin-bottom: 2rem;
+        padding-left: .4rem;
+
+        h1 {
+            font-family: "Alexander Lettering";
+            font-size: 7.5rem;
+            font-weight: 400;
+            line-height: 1;
+
+            @media screen and (max-width: $bp-medium) {
+                font-size: 5.5rem;
+            }
+        }
+    }
+
+    .richtext.description {
+        max-width: 40rem;
+        margin-top: 1rem;
+        color: var(--color-grey);
+        font-size: 1.6rem;
+
+        @media screen and (max-width: $bp-large) {
+            margin-top: 2rem;
+        }
+    }
+
+    .bg-image {
+        position: absolute;
+        width: 28rem;
+        height: 28rem;
+        object-fit: contain;
+        object-position: center;
+        top: 7rem;
+        left: 17rem;
+        z-index: -1;
+        opacity: .8;
+
+        @media screen and (max-width: $bp-large) {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 15rem;
+            height: 15rem;
+        }
+    }
+}

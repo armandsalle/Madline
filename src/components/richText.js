@@ -2,11 +2,16 @@ import React from "react"
 import PropTypes from "prop-types"
 import { RichText } from "prismic-reactjs"
 import { linkResolver } from "../utils/linkResolver"
+import cn from "classnames"
 
-const CustomRichText = ({ data }) => {
+const CustomRichText = ({ data, className }) => {
   if (!data) return null
 
-  return <div className="richtext">{RichText.render(data, linkResolver)}</div>
+  return (
+    <div className={cn("richtext", className)}>
+      {RichText.render(data, linkResolver)}
+    </div>
+  )
 }
 
 CustomRichText.propTypes = {

@@ -12,19 +12,18 @@ const ServiceItem = ({
   rightInfo,
 }) => {
   return (
-    <>
-      <h2>
-        <span>
-          <img src={icone.url} alt={icone?.alt} width="50" />
-        </span>
-        {title}
-      </h2>
-      <p>{subTitle}</p>
-      <RichText data={description} />
-      <RichText data={leftInfo} />
-      <RichText data={rightInfo} />
-      <img src={image.url} alt={image?.alt} width="200" />
-    </>
+    <div className="service-item">
+      <div className="service-item__info">
+        <h2 style={{ "--bg-img": `url(${icone.url})` }}>{title}</h2>
+        <p className="localisation">{subTitle}</p>
+        <RichText data={description} className="description" />
+        <div className="informations">
+          <RichText data={leftInfo} className="leftInfo" />
+          <RichText data={rightInfo} className="rightInfo" />
+        </div>
+      </div>
+      <img src={image.url} alt={image?.alt} className="service-item__image" />
+    </div>
   )
 }
 
