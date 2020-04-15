@@ -7,7 +7,7 @@ import About from "../components/about"
 import Nav from "../components/nav"
 // import { globalHistory } from "@reach/router/lib/history"
 
-const Layout = ({ children, isIndex }) => {
+const Layout = ({ children, isLarge }) => {
   const {
     prismic: { layout, categories },
   } = useStaticQuery(graphql`
@@ -152,7 +152,7 @@ const Layout = ({ children, isIndex }) => {
         </button>
       )}
 
-      <div className={cn("container", { index: isIndex })}>{children}</div>
+      <div className={cn("container", { large: isLarge })}>{children}</div>
 
       <About {...layout} state={about} />
       <Nav categoriesList={categoriesList} state={menu} />

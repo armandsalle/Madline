@@ -10,7 +10,7 @@ const Index = ({
   },
 }) => {
   return (
-    <Layout isIndex>
+    <Layout isLarge>
       <div className="home">
         <div className="grid-img">
           {home.heroPhotos.map((el, i) => {
