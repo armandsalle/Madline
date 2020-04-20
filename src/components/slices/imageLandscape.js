@@ -3,9 +3,11 @@ import PropTypes from "prop-types"
 
 const ImageLandscape = ({ primary: { imageLandscape, name } }) => {
   return (
-    <div className="slice__imageLandscape">
-      <img src={imageLandscape.url} alt={imageLandscape?.alt} width="400" />
-      <div>{name}</div>
+    <div className="container slice">
+      <div className="slice__imageLandscape">
+        <img src={imageLandscape.url} alt={imageLandscape?.alt} />
+        {name && <div className="credit">{name}</div>}
+      </div>
     </div>
   )
 }

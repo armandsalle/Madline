@@ -7,13 +7,17 @@ const ProjectPreview = ({ date, place, thumbnail, title, _meta: { uid } }) => {
     <div className="gallery-preview">
       <div className="infos">
         <Link to={`/gallery/${uid}`}>
-          <h1>{title}</h1>
-          <p>{date}</p>
-          <p>{place}</p>
+          <div className="title">
+            <h1>{title}</h1>
+            <div className="date">{date}</div>
+            <div className="place">{place}</div>
+          </div>
         </Link>
       </div>
 
-      <img src={thumbnail.url} alt={thumbnail?.alt} />
+      <Link to={`/gallery/${uid}`} className="thumbnail">
+        <img src={thumbnail.url} alt={thumbnail?.alt} />
+      </Link>
     </div>
   )
 }

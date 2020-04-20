@@ -19,7 +19,7 @@ $bp-medium: 48.125em; //770px
 *,
 *::after,
 *::before {
-  box-sizing: inherit;
+  box-sizing: border-box;
 }
 
 html {

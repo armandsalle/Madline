@@ -4,17 +4,33 @@ import PropTypes from "prop-types"
 const Description = ({ fields }) => {
   if (fields.length === 0) return
 
-  return fields.map(({ descTitle, descSubTitle, descText }, index) => (
-    <div key={index} className="slice__description">
-      <h5>{descTitle}</h5>
-      <p>
-        <b>{descSubTitle}</b>
-      </p>
-      <p>
-        <i>{descText}</i>
-      </p>
+  return (
+    <div className="container slice">
+      <div className="slice__description">
+        <div className="titles">
+          {fields.map(({ descTitle }, index) => (
+            <h5 key={index} className="title">
+              {descTitle}
+            </h5>
+          ))}
+        </div>
+        <div className="subtitles">
+          {fields.map(({ descSubTitle }, index) => (
+            <p key={index} className="subTitle">
+              {descSubTitle}
+            </p>
+          ))}
+        </div>
+        <div className="descriptions">
+          {fields.map(({ descText }, index) => (
+            <p key={index} className="description">
+              {descText}
+            </p>
+          ))}
+        </div>
+      </div>
     </div>
-  ))
+  )
 }
 
 Description.propTypes = {

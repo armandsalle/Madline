@@ -7,13 +7,11 @@ import About from "../components/about"
 import Nav from "../components/nav"
 // import { globalHistory } from "@reach/router/lib/history"
 
-const Layout = ({ children, isLarge }) => {
-  const {
-    prismic: { layout, categories },
-  } = useStaticQuery(graphql`
-    query Layout {
+const Layout = ({ children, isLarge, isGallery, isSlice }) => {
+  const data = useStaticQuery(graphql`
+    {
       prismic {
-        layout(lang: "fr-fr", uid: "layout") {
+        layout: layout(uid: "layout", lang: "fr-fr") {
           title
           logo
           aboutTitle
@@ -33,6 +31,12 @@ const Layout = ({ children, isLarge }) => {
       }
     }
   `)
+
+  console.log(data)
+
+  const {
+    prismic: { layout, categories },
+  } = data
 
   const categoriesList = [
     ...new Set(categories.edges.map(el => el.node.categorie)),
@@ -54,7 +58,11 @@ const Layout = ({ children, isLarge }) => {
   const [disableMenu, setDisableMenu] = useState(false)
 
   // Methods
-  const body = document.querySelector("body")
+  let body
+
+  if (typeof window !== `undefined`) {
+    body = document.querySelector("body")
+  }
 
   const handleAbout = () => {
     handleDisableAbout()
@@ -152,7 +160,15 @@ const Layout = ({ children, isLarge }) => {
         </button>
       )}
 
-      <div className={cn("container", { large: isLarge })}>{children}</div>
+      <div
+        className={cn("container", {
+          large: isLarge,
+          gallery: isGallery,
+          slice: isSlice,
+        })}
+      >
+        {children}
+      </div>
 
       <About {...layout} state={about} />
       <Nav categoriesList={categoriesList} state={menu} />

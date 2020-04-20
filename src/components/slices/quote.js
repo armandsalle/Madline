@@ -4,9 +4,11 @@ import RichText from "../richText"
 
 const Quote = ({ primary: { author, quote } }) => {
   return (
-    <div className="slice__quote">
-      <RichText data={quote} />
-      <p>{author}</p>
+    <div className="container slice">
+      <div className="slice__quote">
+        <RichText data={quote} className="content" />
+        {author && <p className="author">{author}</p>}
+      </div>
     </div>
   )
 }

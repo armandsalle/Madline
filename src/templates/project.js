@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import Layout from "../hoc/layout"
 import RichText from "../components/richText"
 import ProjectSlices from "../components/projectSlices"
+import { Link } from "gatsby"
 
 const Project = ({
   data: {
@@ -13,14 +14,30 @@ const Project = ({
   const data = project.edges.slice(0, 1).pop().node
 
   return (
-    <Layout>
-      <h1>{data.title}</h1>
-      <p>{data.date}</p>
-      <p>{data.place}</p>
-      <img src={data.thumbnail.url} alt={data.thumbnail?.alt} width="100" />
-      <RichText data={data.description} />
+    <>
+      <Layout isGallery>
+        <div className="gallery-all">
+          <div className="gallery-preview">
+            <div className="infos">
+              <div className="title">
+                <h1>{data.title}</h1>
+                <div className="date">{data.date}</div>
+                <div className="place">{data.place}</div>
+              </div>
+              <RichText data={data.description} />
+            </div>
+
+            <div className="thumbnail">
+              <img src={data.thumbnail.url} alt={data.thumbnail?.alt} />
+            </div>
+          </div>
+        </div>
+      </Layout>
       <ProjectSlices slices={data.body} />
-    </Layout>
+      <div className="next">
+        <Link to="/gallery">Retour</Link>
+      </div>
+    </>
   )
 }
 

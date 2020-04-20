@@ -1,12 +1,10 @@
-import React, { useRef, useState, useEffect } from "react"
+import React, { useRef, useEffect } from "react"
 import { Link } from "gatsby"
 import gsap from "gsap"
 
 const Nav = ({ categoriesList, state }) => {
   const nav = useRef(null)
   const categoriesUl = useRef(null)
-
-  const [hasCategoriesVisible, setCategoriesVisible] = useState(false)
 
   const showMenu = () => {
     gsap.set(".nav", { display: "flex", opacity: 0 })
@@ -77,10 +75,9 @@ const Nav = ({ categoriesList, state }) => {
   }
 
   const showCat = () => {
-    const v = +(
-      document.querySelector(".nav__gallery").clientWidth -
-      document.querySelector(".gallery-titre").clientWidth
-    )
+    const v =
+      (document.querySelector(".gallery-titre").clientWidth * 100) /
+      document.querySelector(".nav__gallery").clientWidth
 
     const tl = gsap.timeline({ paused: true })
     tl.to(categoriesUl.current, {
@@ -89,7 +86,7 @@ const Nav = ({ categoriesList, state }) => {
       duration: 0,
     })
       .to(".nav__gallery p", {
-        x: `${v}px`,
+        xPercent: `${100 - +v}`,
       })
       .from(
         categoriesUl.current.children,
@@ -109,40 +106,29 @@ const Nav = ({ categoriesList, state }) => {
 
   useEffect(() => {
     if (state.clicked === false) {
-      if (hasCategoriesVisible) {
-        if (window.innerWidth >= 700) {
-          hideCat().play()
-        }
-
-        setCategoriesVisible(false)
+      if (window.innerWidth >= 700) {
+        hideCat().play()
       }
+
       hideMenu().play()
     } else if (
       state.clicked === true ||
       (state.clicked === true && state.initial === null)
     ) {
       showMenu().play()
-    }
-  }, [state.clicked, state.initial])
-
-  const handleCategories = () => {
-    if (hasCategoriesVisible) {
-      return
-    } else {
       if (window.innerWidth >= 700) {
-        showCat().play()
+        showCat()
+          .play()
+          .delay(0.55)
       }
     }
-    setCategoriesVisible(true)
-  }
+  }, [state.clicked, state.initial])
 
   return (
     <nav ref={nav} className="nav">
       <ul className="nav__list">
         <li className="nav__gallery">
-          <p className="gallery-titre" onMouseEnter={handleCategories}>
-            Galerie
-          </p>
+          <p className="gallery-titre">Galerie</p>
           <ul ref={categoriesUl}>
             {categoriesList.map(cat => (
               <li key={cat}>
