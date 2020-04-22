@@ -6,17 +6,57 @@
     align-items: center;
     flex-direction: column;
 
-    @media screen and (max-width: $bp-large) {
-        margin-top: 2rem;
-    }
-
-
     .content {
         position: relative;
+
+        @media screen and (max-width: $bp-medium) {
+            padding-top: 2rem;
+        }
+
+        .icone {
+            position: absolute;
+            width: 3.6rem;
+            height: 3.6rem;
+
+            &-pin {
+                bottom: -30%;
+                left: 0;
+
+                @media screen and (max-width: $bp-medium) {
+                    bottom: -10%;
+                    left: 0;
+                    right: unset;
+                    top: unset;
+                }
+            }
+
+            &-fb {
+                left: -20%;
+                top: 10%;
+
+                @media screen and (max-width: $bp-medium) {
+                    bottom: -10%;
+                    left: 4.6rem;
+                    right: unset;
+                    top: unset;
+                }
+            }
+
+            &-insta {
+                right: -10%;
+                top: -20%;
+
+                @media screen and (max-width: $bp-medium) {
+                    bottom: -10%;
+                    left: 9.2rem;
+                    right: unset;
+                    top: unset;
+                }
+            }
+        }
     }
 
     .title {
-        overflow: hidden;
         margin-bottom: 2rem;
         padding-left: .4rem;
         max-width: 51rem;

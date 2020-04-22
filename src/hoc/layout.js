@@ -5,9 +5,9 @@ import cn from "classnames"
 import "../style/main.scss"
 import About from "../components/about"
 import Nav from "../components/nav"
-// import { globalHistory } from "@reach/router/lib/history"
+import Helmet from "react-helmet"
 
-const Layout = ({ children, isLarge, isGallery, isSlice }) => {
+const Layout = ({ children, isLarge, isGallery, isSlice, seo }) => {
   const data = useStaticQuery(graphql`
     {
       prismic {
@@ -32,11 +32,11 @@ const Layout = ({ children, isLarge, isGallery, isSlice }) => {
     }
   `)
 
-  console.log(data)
-
   const {
     prismic: { layout, categories },
   } = data
+
+  console.log(layout)
 
   const categoriesList = [
     ...new Set(categories.edges.map(el => el.node.categorie)),
@@ -135,44 +135,59 @@ const Layout = ({ children, isLarge, isGallery, isSlice }) => {
   }
 
   return (
-    <div className="layout">
-      <Link to="/" className="header__logo" onClick={closeModals}>
-        <img src={layout.logo.url} alt={layout.logo?.alt} />
-      </Link>
+    <>
+      <Helmet>
+        <title>{seo?.title ? seo?.title : layout?.siteTitle}</title>
+        <meta
+          name="description"
+          content={
+            seo?.description ? seo?.description : layout?.siteDescription
+          }
+        />
+        <meta property="og:image" content="/og/image-1200x630.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+      </Helmet>
 
-      {!menu.clicked && (
-        <button
-          disabled={disableAbout}
-          className="header__about"
-          onClick={handleAbout}
+      <div className="layout">
+        <Link to="/" className="header__logo" onClick={closeModals}>
+          <img src={layout.logo.url} alt={layout.logo?.alt} />
+        </Link>
+
+        {!menu.clicked && (
+          <button
+            disabled={disableAbout}
+            className="header__about"
+            onClick={handleAbout}
+          >
+            {about.text}
+          </button>
+        )}
+
+        {!about.clicked && (
+          <button
+            disabled={disableMenu}
+            className="header__menu"
+            onClick={handleMenu}
+          >
+            {menu.text}
+          </button>
+        )}
+
+        <div
+          className={cn("container", {
+            large: isLarge,
+            gallery: isGallery,
+            slice: isSlice,
+          })}
         >
-          {about.text}
-        </button>
-      )}
+          {children}
+        </div>
 
-      {!about.clicked && (
-        <button
-          disabled={disableMenu}
-          className="header__menu"
-          onClick={handleMenu}
-        >
-          {menu.text}
-        </button>
-      )}
-
-      <div
-        className={cn("container", {
-          large: isLarge,
-          gallery: isGallery,
-          slice: isSlice,
-        })}
-      >
-        {children}
+        <About {...layout} state={about} />
+        <Nav categoriesList={categoriesList} state={menu} />
       </div>
-
-      <About {...layout} state={about} />
-      <Nav categoriesList={categoriesList} state={menu} />
-    </div>
+    </>
   )
 }
 

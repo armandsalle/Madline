@@ -13,6 +13,7 @@ const PrivateProject = ({
   const [clientPassword, setPassword] = useState("")
   const [isCorrect, setCorrect] = useState(false)
   const [hasError, setError] = useState(false)
+  const [isDisabled, setDisabled] = useState(true)
 
   const data = privateProject.edges.slice(0, 1).pop().node
 
@@ -20,10 +21,18 @@ const PrivateProject = ({
     if (hasError) {
       setError(false)
     }
+
     setPassword(e.target.value)
+
+    if (e.target.value.length >= 1) {
+      setDisabled(false)
+    } else if (e.target.value.length === 0) {
+      setDisabled(true)
+    }
   }
 
-  const checkPassword = () => {
+  const checkPassword = e => {
+    e.preventDefault()
     if (clientPassword === data.password) {
       setError(false)
       setCorrect(true)
@@ -33,30 +42,57 @@ const PrivateProject = ({
   }
 
   return (
-    <div>
+    <>
       {!isCorrect && (
-        <>
-          <input
-            type="text"
-            placeholder="mot de passe"
-            value={clientPassword}
-            onChange={e => handleChange(e)}
-          />
-          <button onClick={checkPassword}>Acceder</button>
-        </>
+        <div className="login">
+          <h1>Connectez-vous</h1>
+          <form className="login__form" onSubmit={e => checkPassword(e)}>
+            <input
+              type="password"
+              placeholder="Mot de passe"
+              value={clientPassword}
+              onChange={e => handleChange(e)}
+            />
+            <button disabled={isDisabled}>
+              <svg
+                width="7"
+                height="13"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <defs />
+                <path d="M1 1l5 5.5L1 12" stroke="#24211C" />
+              </svg>
+            </button>
+          </form>
+        </div>
       )}
 
       {isCorrect && (
-        <Layout>
-          <h1>{data.title}</h1>
-          <p>{data.date}</p>
-          <p>{data.place}</p>
-          <img src={data.thumbnail.url} alt={data.thumbnail?.alt} width="100" />
-          <RichText data={data.description} />
+        <>
+          <Layout isGallery>
+            <div className="gallery-all">
+              <div className="gallery-preview">
+                <div className="infos">
+                  <div className="title">
+                    <h1>{data.title}</h1>
+                    <div className="date">{data.date}</div>
+                    <div className="place">{data.place}</div>
+                  </div>
+                  <RichText data={data.description} />
+                </div>
+
+                <div className="thumbnail">
+                  <img src={data.thumbnail.url} alt={data.thumbnail?.alt} />
+                </div>
+              </div>
+            </div>
+          </Layout>
           <ProjectSlices slices={data.body} />
-        </Layout>
+          <div className="next"></div>
+        </>
       )}
-    </div>
+    </>
   )
 }
 

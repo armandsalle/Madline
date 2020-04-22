@@ -1,8 +1,22 @@
 import React, { useRef, useEffect } from "react"
 import { Link } from "gatsby"
+// import Img from "gatsby-image"
 import gsap from "gsap"
+import bgIamge from "../images/menu.png"
 
 const Nav = ({ categoriesList, state }) => {
+  // const data = useStaticQuery(graphql`
+  //   query ImageNav {
+  //     image: file(relativePath: { eq: "menu.png" }) {
+  //       childImageSharp {
+  //         fluid {
+  //           ...GatsbyImageSharpFluid
+  //         }
+  //       }
+  //     }
+  //   }
+  // `)
+
   const nav = useRef(null)
   const categoriesUl = useRef(null)
 
@@ -46,34 +60,6 @@ const Nav = ({ categoriesList, state }) => {
     return tl
   }
 
-  const hideCat = () => {
-    const tl = gsap.timeline({ paused: true })
-    tl.to(categoriesUl.current.children, {
-      opacity: 0,
-      x: -50,
-      stagger: {
-        amount: 0.05,
-      },
-      duration: 0.35,
-    })
-      .to(
-        ".nav__gallery p",
-        {
-          x: 0,
-        },
-        "-=0.3"
-      )
-      .set(categoriesUl.current, {
-        display: "none",
-      })
-    tl.set(categoriesUl.current.children, {
-      opacity: 1,
-      x: 0,
-    })
-
-    return tl
-  }
-
   const showCat = () => {
     const v =
       (document.querySelector(".gallery-titre").clientWidth * 100) /
@@ -104,19 +90,50 @@ const Nav = ({ categoriesList, state }) => {
     return tl
   }
 
+  const hideCat = () => {
+    const tl = gsap.timeline({ paused: true })
+    tl.to(categoriesUl.current.children, {
+      opacity: 0,
+      x: -50,
+      stagger: {
+        amount: 0.05,
+      },
+      duration: 0.35,
+    })
+      .to(
+        ".nav__gallery p",
+        {
+          x: 0,
+        },
+        "-=0.3"
+      )
+      .set(categoriesUl.current, {
+        display: "none",
+      })
+    tl.set(categoriesUl.current.children, {
+      opacity: 1,
+      x: 0,
+    })
+    tl.set(".nav__gallery p", {
+      xPercent: 0,
+    })
+
+    return tl
+  }
+
   useEffect(() => {
     if (state.clicked === false) {
-      if (window.innerWidth >= 700) {
+      if (window.innerWidth >= 770) {
         hideCat().play()
       }
-
       hideMenu().play()
     } else if (
       state.clicked === true ||
       (state.clicked === true && state.initial === null)
     ) {
       showMenu().play()
-      if (window.innerWidth >= 700) {
+
+      if (window.innerWidth >= 770) {
         showCat()
           .play()
           .delay(0.55)
@@ -126,6 +143,9 @@ const Nav = ({ categoriesList, state }) => {
 
   return (
     <nav ref={nav} className="nav">
+      <div className="nav-img">
+        <img src={bgIamge} alt="Menu background" />
+      </div>
       <ul className="nav__list">
         <li className="nav__gallery">
           <p className="gallery-titre">Galerie</p>

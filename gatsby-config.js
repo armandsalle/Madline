@@ -4,9 +4,9 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `Madline`,
+    title: `Madline Vslr`,
     description: `Site de Madline`,
-    author: `@madline_vslr`,
+    author: `Madline Vslr`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -22,14 +22,22 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `img`,
+        path: `${__dirname}/src/images`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Madline Vslr`,
+        short_name: `Madline Vslr`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
+        background_color: `#fffaf6`,
+        theme_color: `#24211c`,
+        display: `standalone`,
+        icon: `./static/icons/favicon-32x32.png`,
       },
     },
   ],

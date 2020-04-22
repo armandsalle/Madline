@@ -3,6 +3,9 @@ import PropTypes from "prop-types"
 import { graphql } from "gatsby"
 import Layout from "../hoc/layout"
 import RichText from "../components/richText"
+import facebook from "../images/facebook.png"
+import instagram from "../images/insta.png"
+import pinterest from "../images/pinterest.png"
 
 const Contact = ({
   data: {
@@ -13,6 +16,17 @@ const Contact = ({
     <Layout>
       <div className="contact">
         <div className="content">
+          <img
+            src={pinterest}
+            alt="Pinterest logo"
+            className="icone icone-pin"
+          />
+          <img src={facebook} alt="Facebook logo" className="icone icone-fb" />
+          <img
+            src={instagram}
+            alt="Instagram logo"
+            className="icone icone-insta"
+          />
           <div className="title">
             <h1>{contact.title}</h1>
           </div>
