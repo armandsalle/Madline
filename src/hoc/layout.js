@@ -11,7 +11,7 @@ const Layout = ({ children, isLarge, isGallery, isSlice, seo }) => {
   const data = useStaticQuery(graphql`
     {
       prismic {
-        layout: layout(uid: "layout", lang: "fr-fr") {
+        layout: layout(lang: "fr-fr", uid: "layout") {
           title
           logo
           aboutTitle
@@ -35,8 +35,6 @@ const Layout = ({ children, isLarge, isGallery, isSlice, seo }) => {
   const {
     prismic: { layout, categories },
   } = data
-
-  console.log(layout)
 
   const categoriesList = [
     ...new Set(categories.edges.map(el => el.node.categorie)),
@@ -64,7 +62,9 @@ const Layout = ({ children, isLarge, isGallery, isSlice, seo }) => {
     body = document.querySelector("body")
   }
 
-  const handleAbout = () => {
+  const handleAbout = e => {
+    e.preventDefault()
+    console.log("clicker")
     handleDisableAbout()
 
     if (about.initial === false) {
@@ -184,7 +184,7 @@ const Layout = ({ children, isLarge, isGallery, isSlice, seo }) => {
           <button
             disabled={disableAbout}
             className="header__about"
-            onClick={handleAbout}
+            onClick={e => handleAbout(e)}
           >
             {about.text}
           </button>

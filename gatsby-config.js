@@ -7,10 +7,17 @@ module.exports = {
     title: `Madline Vslr`,
     description: `Site de Madline`,
     author: `Madline Vslr`,
+    siteUrl: `localhost:8000`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        exclude: [`/private/*`, `/gallery/private/*`, `/404`, `/preview`],
+      },
+    },
     {
       resolve: "gatsby-source-prismic-graphql",
       options: {
