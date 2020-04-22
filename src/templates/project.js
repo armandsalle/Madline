@@ -9,13 +9,15 @@ const Project = ({
   data: {
     prismic: { project },
   },
-  location,
 }) => {
   const data = project.edges.slice(0, 1).pop().node
 
   return (
     <>
-      <Layout isGallery>
+      <Layout
+        isGallery
+        seo={{ title: data?.pageTitle, desc: data?.pageDescription }}
+      >
         <div className="gallery-all">
           <div className="gallery-preview">
             <div className="infos">
@@ -55,6 +57,8 @@ export const indexQuery = graphql`
             thumbnail
             categorie
             description
+            pageTitle
+            pageDescription
             _meta {
               uid
             }

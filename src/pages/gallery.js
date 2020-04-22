@@ -17,7 +17,10 @@ const Gallery = ({
     : projets.edges
 
   return (
-    <Layout isGallery>
+    <Layout
+      isGallery
+      seo={{ title: galerie?.pageTitle, desc: galerie?.pageDescription }}
+    >
       <div className="gallery-all">
         {data.map(
           (el, i) =>

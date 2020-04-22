@@ -13,7 +13,7 @@ const Contact = ({
   },
 }) => {
   return (
-    <Layout>
+    <Layout seo={{ title: contact?.pageTitle, desc: contact?.pageDescription }}>
       <div className="contact">
         <div className="content">
           <img

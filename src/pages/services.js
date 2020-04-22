@@ -2,7 +2,6 @@ import React from "react"
 import PropTypes from "prop-types"
 import { graphql } from "gatsby"
 import Layout from "../hoc/layout"
-import SEO from "../components/seo"
 import Service from "../components/serviceItem"
 
 const Services = ({
@@ -11,8 +10,9 @@ const Services = ({
   },
 }) => {
   return (
-    <Layout>
-      <SEO title={services.pageTitle} />
+    <Layout
+      seo={{ title: services?.pageTitle, desc: services?.pageDescription }}
+    >
       {services.services.map((el, i) => (
         <Service key={i} {...el} />
       ))}

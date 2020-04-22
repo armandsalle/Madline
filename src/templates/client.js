@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { graphql, Link } from "gatsby"
 import cn from "classnames"
+import Helmet from "react-helmet"
 
 const Client = ({
   data: {
@@ -39,77 +40,82 @@ const Client = ({
   }
 
   return (
-    <div>
-      {!isCorrect && (
-        <div className="login">
-          <h1>Connectez-vous</h1>
-          <form className="login__form" onSubmit={e => checkPassword(e)}>
-            <input
-              type="password"
-              placeholder="Mot de passe"
-              value={clientPassword}
-              onChange={e => handleChange(e)}
-            />
-            <button disabled={isDisabled}>
-              <svg
-                width="7"
-                height="13"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <defs />
-                <path d="M1 1l5 5.5L1 12" stroke="#24211C" />
-              </svg>
-            </button>
-          </form>
-        </div>
-      )}
-
-      {isCorrect && (
-        <div className="client-page">
-          <nav>
-            <Link to="/">
-              <img src={layout.logo.url} alt={layout?.alt} width="100" />
-            </Link>
-          </nav>
-          <div className="intro">
-            <div className="title">
-              <h1>{data.title}</h1>
-              <p className="date">{data.date}</p>
-              <p className="place">{data.place}</p>
-            </div>
-            <a
-              href={data.downloadLink.url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Télécharger toutes les photos
-            </a>
-          </div>
-          <div className="photos">
-            {data.photos.map((photo, index) => (
-              <img
-                key={index}
-                src={photo.image.url}
-                alt={photo.image?.alt}
-                className={cn(
-                  {
-                    portrait:
-                      photo.image.dimensions.width <
-                      photo.image.dimensions.height,
-                  },
-                  {
-                    landscape:
-                      photo.image.dimensions.width >
-                      photo.image.dimensions.height,
-                  }
-                )}
+    <>
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
+      <div>
+        {!isCorrect && (
+          <div className="login">
+            <h1>Connectez-vous</h1>
+            <form className="login__form" onSubmit={e => checkPassword(e)}>
+              <input
+                type="password"
+                placeholder="Mot de passe"
+                value={clientPassword}
+                onChange={e => handleChange(e)}
               />
-            ))}
+              <button disabled={isDisabled}>
+                <svg
+                  width="7"
+                  height="13"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <defs />
+                  <path d="M1 1l5 5.5L1 12" stroke="#24211C" />
+                </svg>
+              </button>
+            </form>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+
+        {isCorrect && (
+          <div className="client-page">
+            <nav>
+              <Link to="/">
+                <img src={layout.logo.url} alt={layout?.alt} width="100" />
+              </Link>
+            </nav>
+            <div className="intro">
+              <div className="title">
+                <h1>{data.title}</h1>
+                <p className="date">{data.date}</p>
+                <p className="place">{data.place}</p>
+              </div>
+              <a
+                href={data.downloadLink.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Télécharger toutes les photos
+              </a>
+            </div>
+            <div className="photos">
+              {data.photos.map((photo, index) => (
+                <img
+                  key={index}
+                  src={photo.image.url}
+                  alt={photo.image?.alt}
+                  className={cn(
+                    {
+                      portrait:
+                        photo.image.dimensions.width <
+                        photo.image.dimensions.height,
+                    },
+                    {
+                      landscape:
+                        photo.image.dimensions.width >
+                        photo.image.dimensions.height,
+                    }
+                  )}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </>
   )
 }
 

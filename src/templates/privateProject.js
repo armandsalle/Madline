@@ -3,12 +3,12 @@ import { graphql } from "gatsby"
 import Layout from "../hoc/layout"
 import RichText from "../components/richText"
 import ProjectSlices from "../components/projectSlices"
+import Helmet from "react-helmet"
 
 const PrivateProject = ({
   data: {
     prismic: { privateProject },
   },
-  location,
 }) => {
   const [clientPassword, setPassword] = useState("")
   const [isCorrect, setCorrect] = useState(false)
@@ -43,6 +43,9 @@ const PrivateProject = ({
 
   return (
     <>
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       {!isCorrect && (
         <div className="login">
           <h1>Connectez-vous</h1>
