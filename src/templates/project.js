@@ -1,9 +1,8 @@
 import React from "react"
-import { graphql } from "gatsby"
-import Layout from "../hoc/layout"
-import RichText from "../components/richText"
+import PropTypes from "prop-types"
+import { graphql, Link } from "gatsby"
 import ProjectSlices from "../components/projectSlices"
-import { Link } from "gatsby"
+import ProjectHeader from "../components/projectHeader"
 
 const Project = ({
   data: {
@@ -14,27 +13,14 @@ const Project = ({
 
   return (
     <>
-      <Layout
-        isGallery
+      <ProjectHeader
         seo={{ title: data?.pageTitle, desc: data?.pageDescription }}
-      >
-        <div className="gallery-all">
-          <div className="gallery-preview">
-            <div className="infos">
-              <div className="title">
-                <h1>{data.title}</h1>
-                <div className="date">{data.date}</div>
-                <div className="place">{data.place}</div>
-              </div>
-              <RichText data={data.description} />
-            </div>
-
-            <div className="thumbnail">
-              <img src={data.thumbnail.url} alt={data.thumbnail?.alt} />
-            </div>
-          </div>
-        </div>
-      </Layout>
+        title={data.title}
+        date={data.date}
+        place={data.place}
+        description={data.description}
+        thumbnail={data.thumbnail}
+      />
       <ProjectSlices slices={data.body} />
       <div className="next">
         <Link to="/gallery">Retour</Link>
@@ -43,9 +29,13 @@ const Project = ({
   )
 }
 
+Project.propTypes = {
+  data: PropTypes.object,
+}
+
 export default Project
 
-export const indexQuery = graphql`
+export const projectQuery = graphql`
   query Project($uid: String!) {
     prismic {
       project: allProjets(uid: $uid) {

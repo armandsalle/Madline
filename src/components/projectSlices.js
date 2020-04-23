@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import ImageLandscape from "./slices/imageLandscape"
 import ImageLandscapeFull from "./slices/imageLandscapeFull"
 import Description from "./slices/description"
@@ -28,6 +29,10 @@ const ProjectSlices = ({ slices }) => {
     })()
     return res
   })
+}
+
+ProjectSlices.propTypes = {
+  slices: PropTypes.array,
 }
 
 export default ProjectSlices

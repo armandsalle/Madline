@@ -1,9 +1,10 @@
 import React, { useState } from "react"
+import PropTypes from "prop-types"
 import { graphql } from "gatsby"
-import Layout from "../hoc/layout"
-import RichText from "../components/richText"
+import ProjectHeader from "../components/projectHeader"
 import ProjectSlices from "../components/projectSlices"
 import Helmet from "react-helmet"
+import Login from "../components/login"
 
 const PrivateProject = ({
   data: {
@@ -47,50 +48,23 @@ const PrivateProject = ({
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
       {!isCorrect && (
-        <div className="login">
-          <h1>Connectez-vous</h1>
-          <form className="login__form" onSubmit={e => checkPassword(e)}>
-            <input
-              type="password"
-              placeholder="Mot de passe"
-              value={clientPassword}
-              onChange={e => handleChange(e)}
-            />
-            <button disabled={isDisabled}>
-              <svg
-                width="7"
-                height="13"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <defs />
-                <path d="M1 1l5 5.5L1 12" stroke="#24211C" />
-              </svg>
-            </button>
-          </form>
-        </div>
+        <Login
+          onSubmit={checkPassword}
+          onChange={handleChange}
+          isDisabled={isDisabled}
+          clientPassword={clientPassword}
+        />
       )}
 
       {isCorrect && (
         <>
-          <Layout isGallery>
-            <div className="gallery-all">
-              <div className="gallery-preview">
-                <div className="infos">
-                  <div className="title">
-                    <h1>{data.title}</h1>
-                    <div className="date">{data.date}</div>
-                    <div className="place">{data.place}</div>
-                  </div>
-                  <RichText data={data.description} />
-                </div>
-
-                <div className="thumbnail">
-                  <img src={data.thumbnail.url} alt={data.thumbnail?.alt} />
-                </div>
-              </div>
-            </div>
-          </Layout>
+          <ProjectHeader
+            title={data.title}
+            date={data.date}
+            place={data.place}
+            description={data.description}
+            thumbnail={data.thumbnail}
+          />
           <ProjectSlices slices={data.body} />
           <div className="next"></div>
         </>
@@ -99,9 +73,13 @@ const PrivateProject = ({
   )
 }
 
+PrivateProject.propTypes = {
+  data: PropTypes.object,
+}
+
 export default PrivateProject
 
-export const pageQuery = graphql`
+export const clientQuery = graphql`
   query PrivateProject($uid: String!) {
     prismic {
       privateProject: allProjets(uid: $uid) {

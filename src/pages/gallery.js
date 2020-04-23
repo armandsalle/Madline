@@ -37,7 +37,7 @@ Gallery.propTypes = {
 
 export default Gallery
 
-export const indexQuery = graphql`
+export const galleryQuery = graphql`
   query Gallery {
     prismic {
       projets: allProjets {

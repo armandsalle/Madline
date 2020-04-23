@@ -43,41 +43,12 @@ const Contact = ({
 }
 
 Contact.propTypes = {
-  backgroundImage: PropTypes.shape({
-    alt: PropTypes.any,
-    copyright: PropTypes.any,
-    dimensions: PropTypes.shape({
-      height: PropTypes.number,
-      width: PropTypes.number,
-    }),
-    url: PropTypes.string,
-  }),
-  description: PropTypes.arrayOf(
-    PropTypes.shape({
-      spans: PropTypes.arrayOf(
-        PropTypes.shape({
-          data: PropTypes.shape({
-            link_type: PropTypes.string,
-            target: PropTypes.string,
-            url: PropTypes.string,
-          }),
-          end: PropTypes.number,
-          start: PropTypes.number,
-          type: PropTypes.string,
-        })
-      ),
-      text: PropTypes.string,
-      type: PropTypes.string,
-    })
-  ),
-  pageDescription: PropTypes.string,
-  pageTitle: PropTypes.string,
-  title: PropTypes.string,
+  data: PropTypes.object,
 }
 
 export default Contact
 
-export const indexQuery = graphql`
+export const contactQuery = graphql`
   query Contact {
     prismic {
       contact(lang: "fr-fr", uid: "contact") {

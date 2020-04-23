@@ -101,14 +101,16 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 
-  client.data.prismic.client.edges.forEach(edge => {
-    if (!edge.node.password) return
-    createPage({
-      path: `/private/${edge.node._meta.uid}`,
-      component: templateClient,
-      context: {
-        uid: edge.node._meta.uid,
-      },
+  if (client.data.prismic.client.edges.length > 0) {
+    client.data.prismic.client.edges.forEach(edge => {
+      if (!edge.node.password) return
+      createPage({
+        path: `/private/${edge.node._meta.uid}`,
+        component: templateClient,
+        context: {
+          uid: edge.node._meta.uid,
+        },
+      })
     })
-  })
+  }
 }

@@ -26,4 +26,5 @@ ImageLandscape.propTypes = {
     name: PropTypes.string,
   }),
 }
+
 export default ImageLandscape

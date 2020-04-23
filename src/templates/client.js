@@ -1,7 +1,9 @@
 import React, { useState } from "react"
+import PropTypes from "prop-types"
 import { graphql, Link } from "gatsby"
 import cn from "classnames"
 import Helmet from "react-helmet"
+import Login from "../components/login"
 
 const Client = ({
   data: {
@@ -46,28 +48,12 @@ const Client = ({
       </Helmet>
       <div>
         {!isCorrect && (
-          <div className="login">
-            <h1>Connectez-vous</h1>
-            <form className="login__form" onSubmit={e => checkPassword(e)}>
-              <input
-                type="password"
-                placeholder="Mot de passe"
-                value={clientPassword}
-                onChange={e => handleChange(e)}
-              />
-              <button disabled={isDisabled}>
-                <svg
-                  width="7"
-                  height="13"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <defs />
-                  <path d="M1 1l5 5.5L1 12" stroke="#24211C" />
-                </svg>
-              </button>
-            </form>
-          </div>
+          <Login
+            onSubmit={checkPassword}
+            onChange={handleChange}
+            isDisabled={isDisabled}
+            clientPassword={clientPassword}
+          />
         )}
 
         {isCorrect && (
@@ -119,9 +105,13 @@ const Client = ({
   )
 }
 
+Client.propTypes = {
+  data: PropTypes.object,
+}
+
 export default Client
 
-export const pageQuery = graphql`
+export const clienteQuery = graphql`
   query Client($uid: String!) {
     prismic {
       client: allPrivees(uid: $uid) {

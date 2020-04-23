@@ -1,4 +1,5 @@
 import React, { useEffect } from "react"
+import PropTypes from "prop-types"
 import RichText from "../components/richText"
 import cn from "classnames"
 import gsap from "gsap"
@@ -70,6 +71,21 @@ const About = ({ aboutTitle, aboutText, backgroundImage, state }) => {
       </div>
     </section>
   )
+}
+
+About.propTypes = {
+  aboutTitle: PropTypes.string,
+  aboutText: PropTypes.array,
+  backgroundImage: PropTypes.shape({
+    alt: PropTypes.any,
+    copyright: PropTypes.any,
+    dimensions: PropTypes.shape({
+      height: PropTypes.number,
+      width: PropTypes.number,
+    }),
+    url: PropTypes.string,
+  }),
+  state: PropTypes.object,
 }
 
 export default About

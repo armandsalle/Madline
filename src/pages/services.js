@@ -26,7 +26,7 @@ Services.propTypes = {
 
 export default Services
 
-export const indexQuery = graphql`
+export const servicesQuery = graphql`
   query Services {
     prismic {
       services(lang: "fr-fr", uid: "services") {

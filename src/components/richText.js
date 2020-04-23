@@ -16,6 +16,7 @@ const CustomRichText = ({ data, className }) => {
 
 CustomRichText.propTypes = {
   data: PropTypes.array,
+  className: PropTypes.string,
 }
 
 export default CustomRichText

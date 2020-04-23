@@ -219,6 +219,10 @@ const Layout = ({ children, isLarge, isGallery, isSlice, seo }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  isLarge: PropTypes.bool,
+  isGallery: PropTypes.bool,
+  isSlice: PropTypes.bool,
+  seo: PropTypes.object,
 }
 
 export default Layout
