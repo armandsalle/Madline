@@ -4,44 +4,59 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Madline Vslr`,
+    description: `Site de Madline`,
+    author: `Madline Vslr`,
+    siteUrl: `madlinevslr.com`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sass`,
     {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        exclude: [`/private/*`, `/gallery/private/*`, `/404`, `/preview`],
+      },
+    },
+    {
       resolve: "gatsby-source-prismic-graphql",
       options: {
-        repositoryName: process.env.PRISMIC_REPOSITORY_NAME, // required
-        defaultLang: "fr-fr", // optional, but recommended
-        accessToken: process.env.PRISMIC_ACCESS_TOKEN, // optional
-        // pages: [{ // optional
-        //   type: 'Article', // TypeName from prismic
-        //   match: '/article/:uid', // pages will be generated under this pattern (optional)
-        //   path: '/article', // placeholder page for unpublished documents
-        //   component: require.resolve('./src/templates/article.js'),
-        //   sortBy: 'date_ASC', // optional, default: meta_lastPublicationDate_ASC; useful for pagination
-        // }],
+        repositoryName: process.env.PRISMIC_REPOSITORY_NAME,
+        defaultLang: "fr-fr",
+        accessToken: process.env.PRISMIC_ACCESS_TOKEN,
       },
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: `gatsby-source-filesystem`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
-        start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        name: `img`,
+        path: `${__dirname}/src/images`,
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Madline Vslr`,
+        short_name: `Madline Vslr`,
+        start_url: `/`,
+        background_color: `#fffaf6`,
+        theme_color: `#24211c`,
+        display: `standalone`,
+        icons: [
+          {
+            src: "/android-chrome-192x192.png",
+            sizes: "192x192",
+            type: "image/png",
+          },
+          {
+            src: "/android-chrome-512x512.png",
+            sizes: "512x512",
+            type: "image/png",
+          },
+        ],
+      },
+    },
   ],
 }

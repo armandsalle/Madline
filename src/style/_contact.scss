@@ -1,0 +1,107 @@
+.contact {
+    width: 100%;
+    min-height: calc(100vh - 20rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .content {
+        position: relative;
+
+        @media screen and (max-width: $bp-medium) {
+            padding-top: 2rem;
+        }
+
+        .icone {
+            position: absolute;
+            width: 3.6rem;
+            height: 3.6rem;
+
+            &-pin {
+                bottom: -30%;
+                left: 0;
+
+                @media screen and (max-width: $bp-medium) {
+                    bottom: -10%;
+                    left: 0;
+                    right: unset;
+                    top: unset;
+                }
+            }
+
+            &-fb {
+                left: -20%;
+                top: 10%;
+
+                @media screen and (max-width: $bp-medium) {
+                    bottom: -10%;
+                    left: 4.6rem;
+                    right: unset;
+                    top: unset;
+                }
+            }
+
+            &-insta {
+                right: -10%;
+                top: -20%;
+
+                @media screen and (max-width: $bp-medium) {
+                    bottom: -10%;
+                    left: 9.2rem;
+                    right: unset;
+                    top: unset;
+                }
+            }
+        }
+    }
+
+    .title {
+        margin-bottom: 2rem;
+        padding-left: .4rem;
+        max-width: 51rem;
+
+        h1 {
+            font-family: "Alexander Lettering";
+            font-size: 7.5rem;
+            font-weight: 400;
+            line-height: 1;
+
+            @media screen and (max-width: $bp-medium) {
+                font-size: 5.5rem;
+            }
+        }
+    }
+
+    .richtext.description {
+        max-width: 40rem;
+        margin-top: 1rem;
+        color: var(--color-grey);
+        font-size: 1.6rem;
+
+        @media screen and (max-width: $bp-large) {
+            margin-top: 2rem;
+        }
+    }
+
+    .bg-image {
+        position: absolute;
+        width: 20rem;
+        height: 20rem;
+        object-fit: contain;
+        object-position: center;
+        top: 7rem;
+        right: -4rem;
+        z-index: -1;
+        opacity: .8;
+
+        @media screen and (max-width: $bp-large) {
+            width: 15rem;
+            height: 15rem;
+        }
+
+        @media screen and (max-width: $bp-medium) {
+            top: 12rem;
+        }
+    }
+}

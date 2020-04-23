@@ -1,0 +1,20 @@
+.slice__imageLandscapeFull {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    padding: 8rem 0;
+
+    @media screen and (max-width: $bp-medium) {
+        padding: 4rem 0;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .credit {
+        margin: 1rem 1rem 0 auto;
+        font-size: 1.2rem;
+        line-height: 1.7;
+    }
+}

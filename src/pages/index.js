@@ -1,25 +1,45 @@
 import React from "react"
+import PropTypes from "prop-types"
 import { graphql } from "gatsby"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import Article from "../components/article"
+import Layout from "../hoc/layout"
+import RichText from "../components/richText"
 
-const IndexPage = ({
+const Index = ({
   data: {
     prismic: { home },
   },
 }) => {
-  console.log(home)
   return (
-    <Layout>
-      <SEO title="Home" />
-      <h1>{home.subTitle}</h1>
-      <Article />
+    <Layout isLarge>
+      <div className="home">
+        <div className="grid-img">
+          {home.heroPhotos.map((el, i) => {
+            return i === 0 ? (
+              <img key={i} src={el.image.url} alt={el.image?.alt} />
+            ) : null
+          })}
+          <div className="col-left">
+            {home.heroPhotos.map((el, i) => {
+              return i !== 0 ? (
+                <img src={el.image.url} alt={el.image?.alt} key={i} />
+              ) : null
+            })}
+          </div>
+        </div>
+        <div className="home-title">
+          <RichText data={home.heroTitle} />
+          <p className="home-subTitle">{home.subTitle}</p>
+        </div>
+      </div>
     </Layout>
   )
 }
 
-export default IndexPage
+Index.propTypes = {
+  data: PropTypes.object,
+}
+
+export default Index
 
 export const indexQuery = graphql`
   query Home {
