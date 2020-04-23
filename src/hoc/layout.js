@@ -137,14 +137,15 @@ const Layout = ({ children, isLarge, isGallery, isSlice, seo }) => {
   return (
     <>
       <Helmet>
+        <html lang="fr" />
         <title>{seo?.title ? seo?.title : layout?.siteTitle}</title>
         <meta
           name="description"
           content={seo?.desc ? seo?.desc : layout?.siteDescription}
         />
-        <link rel="canonical" href="" />
+        <link rel="canonical" href="madlinevslr.com" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="" />
+        <meta property="og:url" content="madlinevslr.com" />
         <meta
           property="og:title"
           content={seo?.title ? seo?.title : layout?.siteTitle}

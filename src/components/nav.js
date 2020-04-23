@@ -1,22 +1,9 @@
 import React, { useRef, useEffect } from "react"
 import { Link } from "gatsby"
-// import Img from "gatsby-image"
 import gsap from "gsap"
-import bgIamge from "../images/menu.png"
+import bgIamge from "../images/menu.webp"
 
 const Nav = ({ categoriesList, state }) => {
-  // const data = useStaticQuery(graphql`
-  //   query ImageNav {
-  //     image: file(relativePath: { eq: "menu.png" }) {
-  //       childImageSharp {
-  //         fluid {
-  //           ...GatsbyImageSharpFluid
-  //         }
-  //       }
-  //     }
-  //   }
-  // `)
-
   const nav = useRef(null)
   const categoriesUl = useRef(null)
 

@@ -3,9 +3,9 @@ import PropTypes from "prop-types"
 import { graphql } from "gatsby"
 import Layout from "../hoc/layout"
 import RichText from "../components/richText"
-import facebook from "../images/facebook.png"
-import instagram from "../images/insta.png"
-import pinterest from "../images/pinterest.png"
+import facebook from "../images/facebook.webp"
+import instagram from "../images/insta.webp"
+import pinterest from "../images/pinterest.webp"
 
 const Contact = ({
   data: {
