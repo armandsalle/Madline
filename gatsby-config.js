@@ -7,7 +7,7 @@ module.exports = {
     title: `Madline Vslr`,
     description: `Site de Madline`,
     author: `Madline Vslr`,
-    siteUrl: `madlinevslr.com`,
+    siteUrl: `https://madlinevslr.com`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
