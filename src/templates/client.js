@@ -4,6 +4,7 @@ import { graphql, Link } from "gatsby"
 import cn from "classnames"
 import Helmet from "react-helmet"
 import Login from "../components/login"
+import "../style/main.scss"
 
 const Client = ({
   data: {
