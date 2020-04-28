@@ -1,37 +1,44 @@
 import React, { useState } from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql, Link } from "gatsby"
+import { StaticQuery, graphql, Link } from "gatsby"
 import cn from "classnames"
 import "../style/main.scss"
 import About from "../components/about"
 import Nav from "../components/nav"
 import Helmet from "react-helmet"
 
-const Layout = ({ children, isLarge, isGallery, isSlice, seo }) => {
-  const data = useStaticQuery(graphql`
-    {
-      prismic {
-        layout: layout(lang: "fr-fr", uid: "layout") {
-          title
-          logo
-          aboutTitle
-          aboutText
-          backgroundImage
-          siteTitle
-          siteDescription
-          shareImage
-        }
-        categories: allProjets {
-          edges {
-            node {
-              categorie
-            }
+const graphRequest = graphql`
+  {
+    prismic {
+      layout: layout(lang: "fr-fr", uid: "layout") {
+        title
+        logo
+        aboutTitle
+        aboutText
+        backgroundImage
+        siteTitle
+        siteDescription
+        shareImage
+      }
+      categories: allProjets {
+        edges {
+          node {
+            categorie
           }
         }
       }
     }
-  `)
+  }
+`
 
+const LayoutContainer = ({
+  children,
+  isLarge,
+  isGallery,
+  isSlice,
+  seo,
+  data,
+}) => {
   const {
     prismic: { layout, categories },
   } = data
@@ -218,7 +225,18 @@ const Layout = ({ children, isLarge, isGallery, isSlice, seo }) => {
   )
 }
 
+const Layout = props => (
+  <StaticQuery
+    query={`${graphRequest}`}
+    render={data => <LayoutContainer {...props} data={data} />}
+  />
+)
+
 Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+}
+
+LayoutContainer.propTypes = {
   children: PropTypes.node.isRequired,
   isLarge: PropTypes.bool,
   isGallery: PropTypes.bool,
