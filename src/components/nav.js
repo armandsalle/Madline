@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react"
 import { Link } from "gatsby"
 import gsap from "gsap"
 import bgIamge from "../images/menu.webp"
+import bgIamgePng from "../images/menu.png"
 
 const Nav = ({ categoriesList, state }) => {
   const nav = useRef(null)
@@ -131,7 +132,10 @@ const Nav = ({ categoriesList, state }) => {
   return (
     <nav ref={nav} className="nav">
       <div className="nav-img">
-        <img src={bgIamge} alt="Menu background" />
+        <picture>
+          <source type="image/webp" srcset={bgIamge} alt="Menu background" />
+          <img src={bgIamgePng} alt="Menu background" />
+        </picture>
       </div>
       <ul className="nav__list">
         <li className="nav__gallery">

@@ -6,6 +6,9 @@ import RichText from "../components/richText"
 import facebook from "../images/facebook.webp"
 import instagram from "../images/insta.webp"
 import pinterest from "../images/pinterest.webp"
+import facebookPng from "../images/facebook.png"
+import instagramPng from "../images/insta.png"
+import pinterestPng from "../images/pinterest.png"
 
 const Contact = ({
   data: {
@@ -16,17 +19,48 @@ const Contact = ({
     <Layout seo={{ title: contact?.pageTitle, desc: contact?.pageDescription }}>
       <div className="contact">
         <div className="content">
-          <img
-            src={pinterest}
-            alt="Pinterest logo"
-            className="icone icone-pin"
-          />
-          <img src={facebook} alt="Facebook logo" className="icone icone-fb" />
-          <img
-            src={instagram}
-            alt="Instagram logo"
-            className="icone icone-insta"
-          />
+          <picture>
+            <source
+              type="image/webp"
+              srcset={pinterest}
+              alt="Pinterest logo"
+              className="icone icone-pin"
+            />
+            <img
+              src={pinterestPng}
+              alt="Pinterest logo"
+              className="icone icone-pin"
+            />
+          </picture>
+
+          <picture>
+            <source
+              type="image/webp"
+              srcset={facebook}
+              alt="Facebook logo"
+              className="icone icone-fb"
+            />
+            <img
+              src={facebookPng}
+              alt="Facebook logo"
+              className="icone icone-fb"
+            />
+          </picture>
+
+          <picture>
+            <source
+              type="image/webp"
+              srcset={instagram}
+              alt="Instagram logo"
+              className="icone icone-insta"
+            />
+            <img
+              src={instagramPng}
+              alt="Instagram logo"
+              className="icone icone-insta"
+            />
+          </picture>
+
           <div className="title">
             <h1>{contact.title}</h1>
           </div>

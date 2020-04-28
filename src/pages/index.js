@@ -28,7 +28,7 @@ const Index = ({
         </div>
         <div className="home-title">
           <RichText data={home.heroTitle} />
-          <p className="home-subTitle">{home.subTitle}</p>
+          {home.subTitle && <p className="home-subTitle">{home.subTitle}</p>}
         </div>
       </div>
     </Layout>
