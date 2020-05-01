@@ -22,7 +22,7 @@ const Contact = ({
           <picture>
             <source
               type="image/webp"
-              srcset={pinterest}
+              srcSet={pinterest}
               alt="Pinterest logo"
               className="icone icone-pin"
             />
@@ -36,7 +36,7 @@ const Contact = ({
           <picture>
             <source
               type="image/webp"
-              srcset={facebook}
+              srcSet={facebook}
               alt="Facebook logo"
               className="icone icone-fb"
             />
@@ -50,7 +50,7 @@ const Contact = ({
           <picture>
             <source
               type="image/webp"
-              srcset={instagram}
+              srcSet={instagram}
               alt="Instagram logo"
               className="icone icone-insta"
             />

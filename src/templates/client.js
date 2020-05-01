@@ -127,6 +127,11 @@ export const clienteQuery = graphql`
               ... on PRISMIC__ExternalLink {
                 url
               }
+              ... on PRISMIC__FileLink {
+                name
+                url
+                size
+              }
             }
             title
             date

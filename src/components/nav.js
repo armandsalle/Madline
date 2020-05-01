@@ -133,7 +133,7 @@ const Nav = ({ categoriesList, state }) => {
     <nav ref={nav} className="nav">
       <div className="nav-img">
         <picture>
-          <source type="image/webp" srcset={bgIamge} alt="Menu background" />
+          <source type="image/webp" srcSet={bgIamge} alt="Menu background" />
           <img src={bgIamgePng} alt="Menu background" />
         </picture>
       </div>

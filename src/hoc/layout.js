@@ -71,7 +71,6 @@ const LayoutContainer = ({
 
   const handleAbout = e => {
     e.preventDefault()
-    console.log("clicker")
     handleDisableAbout()
 
     if (about.initial === false) {
@@ -164,6 +163,7 @@ const LayoutContainer = ({
         <meta property="og:image" content="/image-1200x630.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
+        <meta http-equiv="imagetoolbar" content="no" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"

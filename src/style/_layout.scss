@@ -13,7 +13,7 @@
   }
 
   .header__logo {
-    left: 3.5rem;
+    left: 2rem;
     top: 3.5rem;
 
     img {
@@ -28,8 +28,8 @@
   }
 
   .header__about {
-    bottom: 3.5rem;
-    left: 3.5rem;
+    top: 6.5rem;
+    right: 3.5rem;
 
     @media screen and (max-width: $bp-medium) {
       top: 3.5rem;

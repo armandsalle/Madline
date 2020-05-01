@@ -64,3 +64,7 @@ body.modal-open {
     cursor: pointer;
   }
 }
+
+img {
+  pointer-events: none;
+}
