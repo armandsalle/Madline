@@ -26,14 +26,6 @@ module.exports = {
         accessToken: process.env.PRISMIC_ACCESS_TOKEN,
       },
     },
-    {
-      resolve: "gatsby-plugin-prismic-preview",
-      options: {
-        repositoryName: process.env.PRISMIC_REPOSITORY_NAME,
-        linkResolver: require("./linkResolver.js"),
-        path: "/preview",
-      },
-    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
