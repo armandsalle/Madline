@@ -1,14 +1,15 @@
 import React, { useState } from "react"
 import PropTypes from "prop-types"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import cn from "classnames"
 import Helmet from "react-helmet"
+import Layout from "../hoc/layout"
 import Login from "../components/login"
 import "../style/main.scss"
 
 const Client = ({
   data: {
-    prismic: { client, layout },
+    prismic: { client },
   },
 }) => {
   const [clientPassword, setPassword] = useState("")
@@ -48,30 +49,26 @@ const Client = ({
         <meta name="robots" content="noindex, nofollow" />
         <title>{data.title}</title>
       </Helmet>
-      <div>
+      <Layout>
         {!isCorrect && (
           <Login
             onSubmit={checkPassword}
             onChange={handleChange}
             isDisabled={isDisabled}
             clientPassword={clientPassword}
+            hasError={hasError}
           />
         )}
 
         {isCorrect && (
-          <div className="contianer">
-            <div className="client-page">
-              <nav>
-                <Link to="/">
-                  <img src={layout.logo.url} alt={layout?.alt} width="100" />
-                </Link>
-              </nav>
-              <div className="intro">
-                <div className="title">
-                  <h1>{data.title}</h1>
-                  <p className="date">{data.date}</p>
-                  <p className="place">{data.place}</p>
-                </div>
+          <div className="client-page">
+            <div className="intro">
+              <div className="title">
+                <h1>{data.title}</h1>
+                {data.date && <p className="date">{data.date}</p>}
+                {data.place && <p className="place">{data.place}</p>}
+              </div>
+              {data.downloadLink?.url && (
                 <a
                   href={data.downloadLink.url}
                   target="_blank"
@@ -79,32 +76,32 @@ const Client = ({
                 >
                   Télécharger toutes les photos
                 </a>
-              </div>
-              <div className="photos">
-                {data.photos.map((photo, index) => (
-                  <img
-                    key={index}
-                    src={photo.image.url}
-                    alt={photo.image?.alt}
-                    className={cn(
-                      {
-                        portrait:
-                          photo.image.dimensions.width <
-                          photo.image.dimensions.height,
-                      },
-                      {
-                        landscape:
-                          photo.image.dimensions.width >
-                          photo.image.dimensions.height,
-                      }
-                    )}
-                  />
-                ))}
-              </div>
+              )}
+            </div>
+            <div className="photos">
+              {data.photos.map((photo, index) => (
+                <img
+                  key={index}
+                  src={photo.image.url}
+                  alt={photo.image?.alt}
+                  className={cn(
+                    {
+                      portrait:
+                        photo.image.dimensions.width <
+                        photo.image.dimensions.height,
+                    },
+                    {
+                      landscape:
+                        photo.image.dimensions.width >
+                        photo.image.dimensions.height,
+                    }
+                  )}
+                />
+              ))}
             </div>
           </div>
         )}
-      </div>
+      </Layout>
     </>
   )
 }

@@ -8,25 +8,28 @@ const Description = ({ fields }) => {
     <div className="container slice">
       <div className="slice__description">
         <div className="titles">
-          {fields.map(({ descTitle }, index) => (
-            <h5 key={index} className="title">
-              {descTitle}
-            </h5>
-          ))}
+          {fields &&
+            fields.map(({ descTitle }, index) => (
+              <h5 key={index} className="title">
+                {descTitle}
+              </h5>
+            ))}
         </div>
         <div className="subtitles">
-          {fields.map(({ descSubTitle }, index) => (
-            <p key={index} className="subTitle">
-              {descSubTitle}
-            </p>
-          ))}
+          {fields &&
+            fields.map(({ descSubTitle }, index) => (
+              <p key={index} className="subTitle">
+                {descSubTitle}
+              </p>
+            ))}
         </div>
         <div className="descriptions">
-          {fields.map(({ descText }, index) => (
-            <p key={index} className="description">
-              {descText}
-            </p>
-          ))}
+          {fields &&
+            fields.map(({ descText }, index) => (
+              <p key={index} className="description">
+                {descText}
+              </p>
+            ))}
         </div>
       </div>
     </div>

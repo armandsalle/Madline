@@ -1,7 +1,13 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-const Login = ({ onSubmit, onChange, isDisabled, clientPassword }) => {
+const Login = ({
+  onSubmit,
+  onChange,
+  isDisabled,
+  clientPassword,
+  hasError,
+}) => {
   return (
     <div className="login">
       <h1>Connectez-vous</h1>
@@ -23,6 +29,7 @@ const Login = ({ onSubmit, onChange, isDisabled, clientPassword }) => {
             <path d="M1 1l5 5.5L1 12" stroke="#24211C" />
           </svg>
         </button>
+        {hasError && <div>Mot de passe incorect</div>}
       </form>
     </div>
   )
@@ -33,6 +40,7 @@ Login.propTypes = {
   onChange: PropTypes.func,
   isDisabled: PropTypes.bool,
   clientPassword: PropTypes.string,
+  hasError: PropTypes.bool,
 }
 
 export default Login

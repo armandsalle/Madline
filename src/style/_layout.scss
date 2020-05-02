@@ -25,6 +25,10 @@
   .header__menu {
     right: 3.5rem;
     top: 3.5rem;
+
+    @media screen and (max-width: $bp-medium) {
+      right: 2.5rem;
+    }
   }
 
   .header__about {
@@ -33,7 +37,7 @@
 
     @media screen and (max-width: $bp-medium) {
       top: 3.5rem;
-      right: 9rem;
+      right: 8rem;
       bottom: unset;
       left: unset;
     }
@@ -231,7 +235,8 @@
   min-height: 100vh;
   margin: 0 auto;
   padding: 10rem 2rem;
-  display: block;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
 
   @media screen and (max-width:$bp-largest) {

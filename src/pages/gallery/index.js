@@ -1,8 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { graphql } from "gatsby"
-import Layout from "../hoc/layout"
-import ProjectPreview from "../components/projectPreview"
+import Layout from "../../hoc/layout"
+import ProjectPreview from "../../components/projectPreview"
 
 const Gallery = ({
   data: {
@@ -40,11 +40,11 @@ export default Gallery
 export const galleryQuery = graphql`
   query Gallery {
     prismic {
-      projets: allProjets {
+      projets: allProjets(sortBy: order_ASC) {
         edges {
           node {
-            password
             title
+            order
             date
             place
             thumbnail

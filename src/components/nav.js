@@ -151,6 +151,9 @@ const Nav = ({ categoriesList, state }) => {
             <li>
               <Link to="/gallery">Tout</Link>
             </li>
+            <li>
+              <Link to="/gallery/private">Gallerie privée</Link>
+            </li>
           </ul>
         </li>
         <li>

@@ -9,7 +9,6 @@ exports.createPages = async ({ graphql, actions }) => {
         allProjets {
           edges {
             node {
-              password
               _meta {
                 uid
               }
@@ -27,7 +26,6 @@ exports.createPages = async ({ graphql, actions }) => {
           edges {
             node {
               categorie
-              password
             }
           }
         }
@@ -65,33 +63,20 @@ exports.createPages = async ({ graphql, actions }) => {
   `)
 
   const templateProject = path.resolve("src/templates/project.js")
-  const templatePrivate = path.resolve("src/templates/privateProject.js")
-  const templateGallery = path.resolve("src/pages/gallery.js")
+  const templateGallery = path.resolve("src/pages/gallery/index.js")
   const templateClient = path.resolve("src/templates/client.js")
 
   pages.data.prismic.allProjets.edges.forEach(edge => {
-    if (!!edge.node.password) {
-      createPage({
-        path: `/gallery/private/${edge.node._meta.uid}`,
-        component: templatePrivate,
-        context: {
-          uid: edge.node._meta.uid,
-        },
-      })
-    } else {
-      createPage({
-        path: `/gallery/${edge.node._meta.uid}`,
-        component: templateProject,
-        context: {
-          uid: edge.node._meta.uid,
-        },
-      })
-    }
+    createPage({
+      path: `/gallery/${edge.node._meta.uid}`,
+      component: templateProject,
+      context: {
+        uid: edge.node._meta.uid,
+      },
+    })
   })
 
   categories.data.prismic.categories.edges.forEach(edge => {
-    if (!!edge.node.password) return
-
     createPage({
       path: `/gallery/${edge.node.categorie.toLowerCase()}`,
       component: templateGallery,
@@ -105,7 +90,7 @@ exports.createPages = async ({ graphql, actions }) => {
     client.data.prismic.client.edges.forEach(edge => {
       if (!edge.node.password) return
       createPage({
-        path: `/private/${edge.node._meta.uid}`,
+        path: `/gallery/private/${edge.node._meta.uid}`,
         component: templateClient,
         context: {
           uid: edge.node._meta.uid,

@@ -1,21 +1,33 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
+import lock from "../images/lock.svg"
 
-const ProjectPreview = ({ date, place, thumbnail, title, _meta: { uid } }) => {
+const ProjectPreview = ({
+  isPrivate,
+  date,
+  place,
+  thumbnail,
+  title,
+  _meta: { uid },
+}) => {
   return (
     <div className="gallery-preview">
       <div className="infos">
-        <Link to={`/gallery/${uid}`}>
+        <Link to={isPrivate ? `/gallery/private/${uid}` : `/gallery/${uid}`}>
           <div className="title">
+            {isPrivate && <img src={lock} alt="Lock icon" className="lock" />}
             <h1>{title}</h1>
-            <div className="date">{date}</div>
-            <div className="place">{place}</div>
+            {date && <div className="date">{date}</div>}
+            {place && <div className="place">{place}</div>}
           </div>
         </Link>
       </div>
 
-      <Link to={`/gallery/${uid}`} className="thumbnail">
+      <Link
+        to={isPrivate ? `/gallery/private/${uid}` : `/gallery/${uid}`}
+        className="thumbnail"
+      >
         <img src={thumbnail.url} alt={thumbnail?.alt} />
       </Link>
     </div>

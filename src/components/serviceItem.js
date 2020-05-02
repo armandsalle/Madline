@@ -14,12 +14,12 @@ const ServiceItem = ({
   return (
     <div className="service-item">
       <div className="service-item__info">
-        <h2 style={{ "--bg-img": `url(${icone.url})` }}>{title}</h2>
-        <p className="localisation">{subTitle}</p>
-        <RichText data={description} className="description" />
+        {title && <h2 style={{ "--bg-img": `url(${icone.url})` }}>{title}</h2>}
+        {subTitle && <p className="localisation">{subTitle}</p>}
+        {description && <RichText data={description} className="description" />}
         <div className="informations">
-          <RichText data={leftInfo} className="leftInfo" />
-          <RichText data={rightInfo} className="rightInfo" />
+          {leftInfo && <RichText data={leftInfo} className="leftInfo" />}
+          {rightInfo && <RichText data={rightInfo} className="rightInfo" />}
         </div>
       </div>
       <img src={image.url} alt={image?.alt} className="service-item__image" />

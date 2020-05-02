@@ -11,8 +11,8 @@ const ProjectHeader = ({ title, date, place, description, thumbnail, seo }) => {
           <div className="infos">
             <div className="title">
               <h1>{title}</h1>
-              <div className="date">{date}</div>
-              <div className="place">{place}</div>
+              {date && <div className="date">{date}</div>}
+              {place && <div className="place">{place}</div>}
             </div>
             <RichText data={description} />
           </div>
