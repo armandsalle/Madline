@@ -25,7 +25,7 @@ Services.propTypes = {
   data: PropTypes.object,
 }
 
-export default withPrismicPreview({ data })(Services)
+export default withPrismicPreview()(Services)
 
 export const servicesQuery = graphql`
   query Services {
