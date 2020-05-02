@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { withPrismicPreview } from "gatsby-plugin-prismic-preview"
 import { graphql } from "gatsby"
 import Layout from "../hoc/layout"
 import Service from "../components/serviceItem"
@@ -24,7 +25,7 @@ Services.propTypes = {
   data: PropTypes.object,
 }
 
-export default Services
+export default withPrismicPreview({ data })(Services)
 
 export const servicesQuery = graphql`
   query Services {
