@@ -29,7 +29,7 @@ const Login = ({
             <path d="M1 1l5 5.5L1 12" stroke="#24211C" />
           </svg>
         </button>
-        {hasError && <div>Mot de passe incorect</div>}
+        {hasError && <div>Mot de passe incorrect</div>}
       </form>
     </div>
   )
