@@ -11,14 +11,16 @@ export const onRouteUpdate = ({ location, prevLocation }) => {
   document.querySelector("body").classList.remove("modal-open")
 }
 
+export const wrapRootElement = ({ element }) => {
+  return (
+    <SeoProvider>
+      <LayoutProvider>{element}</LayoutProvider>
+    </SeoProvider>
+  )
+}
+
 export const wrapPageElement = ({ element, props }) => {
   // props provide same data to Layout as Page element will get
   // including location, data, etc - you don't need to pass it
-  return (
-    <SeoProvider>
-      <LayoutProvider>
-        <Layout>{element}</Layout>
-      </LayoutProvider>
-    </SeoProvider>
-  )
+  return <Layout>{element}</Layout>
 }
