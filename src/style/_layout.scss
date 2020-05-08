@@ -261,15 +261,16 @@
 
 .container.gallery {
   padding: 0 2rem;
+  overflow: visible;
 }
 
-.container.slice {
-  padding: 8rem 2rem;
+.slice {
+  padding: 8rem 0;
   min-height: unset;
   margin: 0 auto;
 
   @media screen and (max-width: $bp-medium) {
-    padding: 4rem 2rem;
+    padding: 6rem 0;
   }
 }
 

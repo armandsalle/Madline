@@ -1,5 +1,10 @@
 .slice__imageLandscapeFull {
     width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
     display: flex;
     flex-direction: column;
     padding: 8rem 0;

@@ -3,11 +3,9 @@ import PropTypes from "prop-types"
 
 const ImagePortrait = ({ primary: { imagePortrait, name } }) => {
   return (
-    <div className="container slice">
-      <div className="slice__imagePortrait">
-        <img src={imagePortrait.url} alt={imagePortrait?.alt} />
-        {name && <div className="credit">{name}</div>}
-      </div>
+    <div className="slice__imagePortrait slice">
+      <img src={imagePortrait.url} alt={imagePortrait?.alt} />
+      {name && <div className="credit">{name}</div>}
     </div>
   )
 }

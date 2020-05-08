@@ -5,16 +5,14 @@ const ImageDuo = ({
   primary: { leftImage, leftName, rightImage, rightName },
 }) => {
   return (
-    <div className="container slice">
-      <div className="slice__imageDuo">
-        <div className="slice__imageDuo--left">
-          <img src={leftImage.url} alt={leftImage?.alt} />
-          {leftName && <div className="credit">{leftName}</div>}
-        </div>
-        <div className="slice__imageDuo--right">
-          <img src={rightImage.url} alt={rightImage?.alt} />
-          {rightName && <div className="credit">{rightName}</div>}
-        </div>
+    <div className="slice__imageDuo slice">
+      <div className="slice__imageDuo--left">
+        <img src={leftImage.url} alt={leftImage?.alt} />
+        {leftName && <div className="credit">{leftName}</div>}
+      </div>
+      <div className="slice__imageDuo--right">
+        <img src={rightImage.url} alt={rightImage?.alt} />
+        {rightName && <div className="credit">{rightName}</div>}
       </div>
     </div>
   )

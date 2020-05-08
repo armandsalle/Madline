@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react"
 import PropTypes from "prop-types"
 import { StaticQuery, graphql, Link } from "gatsby"
+import { Transition, TransitionGroup } from "react-transition-group"
 import cn from "classnames"
 import "../style/main.scss"
 import About from "../components/about"
@@ -29,7 +30,7 @@ const graphRequest = graphql`
   }
 `
 
-const LayoutContainer = ({ children, data }) => {
+const LayoutContainer = ({ children, data, location }) => {
   const { container } = useContext(LayoutContext)
   const {
     prismic: { layout, categories },
@@ -167,7 +168,14 @@ const LayoutContainer = ({ children, data }) => {
             slice: container === "isSlice",
           })}
         >
-          {children}
+          <TransitionGroup component={null}>
+            <Transition
+              key={location.pathname}
+              timeout={{ enter: 400, exit: 400 }}
+            >
+              {status => <div className={`page ${status}`}>{children}</div>}
+            </Transition>
+          </TransitionGroup>
         </div>
 
         <About {...layout} state={about} />

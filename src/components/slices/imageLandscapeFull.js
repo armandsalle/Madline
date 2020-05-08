@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 
 const ImageLandscapeFull = ({ primary: { imageFull, name } }) => {
   return (
-    <div className="slice__imageLandscapeFull">
+    <div className="slice__imageLandscapeFull slice">
       <img src={imageFull.url} alt={imageFull?.alt} />
       {name && <div className="credit">{name}</div>}
     </div>
