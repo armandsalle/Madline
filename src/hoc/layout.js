@@ -29,7 +29,7 @@ const graphRequest = graphql`
   }
 `
 
-const LayoutContainer = ({ children, data, seo }) => {
+const LayoutContainer = ({ children, data }) => {
   const { container } = useContext(LayoutContext)
   const {
     prismic: { layout, categories },
@@ -134,7 +134,7 @@ const LayoutContainer = ({ children, data, seo }) => {
 
   return (
     <>
-      <Seo seo={seo} />
+      <Seo />
       <div className="layout">
         <Link to="/" className="header__logo" onClick={closeModals}>
           <img src={layout.logo.url} alt={layout.logo?.alt} />
@@ -190,10 +190,6 @@ Layout.propTypes = {
 
 LayoutContainer.propTypes = {
   children: PropTypes.node.isRequired,
-  isLarge: PropTypes.bool,
-  isGallery: PropTypes.bool,
-  isSlice: PropTypes.bool,
-  seo: PropTypes.object,
 }
 
 export default Layout

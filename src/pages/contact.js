@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react"
 import PropTypes from "prop-types"
 import { graphql } from "gatsby"
 import { LayoutContext } from "../context/layoutContext"
-// import Layout from "../hoc/layout"
+import { SeoContext } from "../context/seoContext"
 import RichText from "../components/richText"
 import facebook from "../images/facebook.webp"
 import instagram from "../images/insta.webp"
@@ -17,13 +17,14 @@ const Contact = ({
   },
 }) => {
   const { setContainer } = useContext(LayoutContext)
+  const { setSeo } = useContext(SeoContext)
 
   useEffect(() => {
     setContainer("")
-  }, [setContainer])
+    setSeo({ title: contact?.pageTitle, desc: contact?.pageDescription })
+  }, [setContainer, setSeo, contact])
 
   return (
-    // <Layout seo={{ title: contact?.pageTitle, desc: contact?.pageDescription }}>
     <div className="contact">
       <div className="content">
         <picture>
@@ -79,7 +80,6 @@ const Contact = ({
         />
       </div>
     </div>
-    // </Layout>
   )
 }
 

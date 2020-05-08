@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import { graphql } from "gatsby"
 import Service from "../components/serviceItem"
 import { LayoutContext } from "../context/layoutContext"
+import { SeoContext } from "../context/seoContext"
 
 export const servicesQuery = graphql`
   query Services {
@@ -30,21 +31,19 @@ const Services = ({
   },
 }) => {
   const { setContainer } = useContext(LayoutContext)
+  const { setSeo } = useContext(SeoContext)
 
   useEffect(() => {
     setContainer("")
-  }, [setContainer])
+    setSeo({ title: services?.pageTitle, desc: services?.pageDescription })
+  }, [setContainer, setSeo, services])
 
   return (
-    // <Layout
-    //   seo={{ title: services?.pageTitle, desc: services?.pageDescription }}
-    // >
     <>
       {services.services.map((el, i) => (
         <Service key={i} {...el} />
       ))}
     </>
-    // </Layout>
   )
 }
 

@@ -1,10 +1,16 @@
-import React from "react"
+import React, { useContext, useEffect } from "react"
 import PropTypes from "prop-types"
+import { SeoContext } from "../context/seoContext"
 import RichText from "../components/richText"
 
 const ProjectHeader = ({ title, date, place, description, thumbnail, seo }) => {
+  const { setSeo } = useContext(SeoContext)
+
+  useEffect(() => {
+    setSeo(seo ? seo : false)
+  }, [setSeo, seo])
+
   return (
-    // <Layout isGallery seo={seo ? seo : false}>
     <div className="gallery-all">
       <div className="gallery-preview">
         <div className="infos">
@@ -21,7 +27,6 @@ const ProjectHeader = ({ title, date, place, description, thumbnail, seo }) => {
         </div>
       </div>
     </div>
-    // </Layout>
   )
 }
 

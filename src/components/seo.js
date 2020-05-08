@@ -1,6 +1,7 @@
-import React from "react"
+import React, { useContext } from "react"
 import Helmet from "react-helmet"
 import { StaticQuery, graphql } from "gatsby"
+import { SeoContext } from "../context/seoContext"
 
 const graphRequest = graphql`
   {
@@ -14,10 +15,13 @@ const graphRequest = graphql`
   }
 `
 
-const Render = ({ seo, data }) => {
+const Render = ({ data }) => {
+  const { seo } = useContext(SeoContext)
+
   const {
     prismic: { layout },
   } = data
+
   return (
     <Helmet>
       <html lang="fr" />

@@ -53,7 +53,7 @@ const Client = ({
     <>
       <Helmet>
         <meta name="robots" content="noindex, nofollow" />
-        <title>{data.title}</title>
+        <title>Madline Vslr - {data.title}</title>
       </Helmet>
 
       {!isCorrect && (

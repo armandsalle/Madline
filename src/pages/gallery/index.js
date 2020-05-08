@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react"
 import PropTypes from "prop-types"
 import { graphql } from "gatsby"
 import { LayoutContext } from "../../context/layoutContext"
+import { SeoContext } from "../../context/seoContext"
 import ProjectPreview from "../../components/projectPreview"
 
 const Gallery = ({
@@ -11,6 +12,7 @@ const Gallery = ({
   pageContext,
 }) => {
   const { setContainer } = useContext(LayoutContext)
+  const { setSeo } = useContext(SeoContext)
 
   const data = pageContext.uid
     ? projets.edges.filter(
@@ -20,18 +22,15 @@ const Gallery = ({
 
   useEffect(() => {
     setContainer("isGallery")
-  }, [setContainer])
+    setSeo({ title: galerie?.pageTitle, desc: galerie?.pageDescription })
+  }, [setSeo, setContainer, galerie])
 
   return (
-    // <Layout
-    //   seo={{ title: galerie?.pageTitle, desc: galerie?.pageDescription }}
-    // >
     <div className="gallery-all">
       {data.map(
         (el, i) => !el.node.password && <ProjectPreview key={i} {...el.node} />
       )}
     </div>
-    // </Layout>
   )
 }
 

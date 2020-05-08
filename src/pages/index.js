@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import { graphql } from "gatsby"
 import RichText from "../components/richText"
 import { LayoutContext } from "../context/layoutContext"
+import { SeoContext } from "../context/seoContext"
 
 const Index = ({
   data: {
@@ -10,10 +11,12 @@ const Index = ({
   },
 }) => {
   const { setContainer } = useContext(LayoutContext)
+  const { setSeo } = useContext(SeoContext)
 
   useEffect(() => {
     setContainer("isLarge")
-  }, [setContainer])
+    setSeo({})
+  }, [setContainer, setSeo])
 
   return (
     <div className="home">

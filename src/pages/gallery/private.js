@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { graphql } from "gatsby"
 import { LayoutContext } from "../../context/layoutContext"
+import { SeoContext } from "../../context/seoContext"
 import ProjectPreview from "../../components/projectPreview"
 
 const Private = ({
@@ -12,6 +13,7 @@ const Private = ({
   pageContext,
 }) => {
   const { setContainer } = useContext(LayoutContext)
+  const { setSeo } = useContext(SeoContext)
 
   const data = pageContext.uid
     ? client.edges.filter(
@@ -21,14 +23,14 @@ const Private = ({
 
   useEffect(() => {
     setContainer("isGallery")
-  }, [setContainer])
+    setSeo({ title: "Madline Vslr - Galerie privée" })
+  }, [setContainer, setSeo])
 
   return (
     <>
       <Helmet>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
-      {/* <Layout isGallery seo={{ title: "Madline Vslr - Galerie privée" }}> */}
       <div className="gallery-all">
         {data.map(
           (el, i) =>
@@ -37,7 +39,6 @@ const Private = ({
             )
         )}
       </div>
-      {/* </Layout> */}
     </>
   )
 }
