@@ -1,7 +1,7 @@
-import React from "react"
+import React, { useContext, useEffect } from "react"
 import PropTypes from "prop-types"
 import { graphql } from "gatsby"
-import Layout from "../../hoc/layout"
+import { LayoutContext } from "../../context/layoutContext"
 import ProjectPreview from "../../components/projectPreview"
 
 const Gallery = ({
@@ -10,24 +10,28 @@ const Gallery = ({
   },
   pageContext,
 }) => {
+  const { setContainer } = useContext(LayoutContext)
+
   const data = pageContext.uid
     ? projets.edges.filter(
         el => el.node.categorie.toLowerCase() === pageContext.uid
       )
     : projets.edges
 
+  useEffect(() => {
+    setContainer("isGallery")
+  }, [setContainer])
+
   return (
-    <Layout
-      isGallery
-      seo={{ title: galerie?.pageTitle, desc: galerie?.pageDescription }}
-    >
-      <div className="gallery-all">
-        {data.map(
-          (el, i) =>
-            !el.node.password && <ProjectPreview key={i} {...el.node} />
-        )}
-      </div>
-    </Layout>
+    // <Layout
+    //   seo={{ title: galerie?.pageTitle, desc: galerie?.pageDescription }}
+    // >
+    <div className="gallery-all">
+      {data.map(
+        (el, i) => !el.node.password && <ProjectPreview key={i} {...el.node} />
+      )}
+    </div>
+    // </Layout>
   )
 }
 

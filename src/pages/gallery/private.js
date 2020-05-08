@@ -1,8 +1,8 @@
-import React from "react"
+import React, { useContext, useEffect } from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { graphql } from "gatsby"
-import Layout from "../../hoc/layout"
+import { LayoutContext } from "../../context/layoutContext"
 import ProjectPreview from "../../components/projectPreview"
 
 const Private = ({
@@ -11,27 +11,33 @@ const Private = ({
   },
   pageContext,
 }) => {
+  const { setContainer } = useContext(LayoutContext)
+
   const data = pageContext.uid
     ? client.edges.filter(
         el => el.node.categorie.toLowerCase() === pageContext.uid
       )
     : client.edges
 
+  useEffect(() => {
+    setContainer("isGallery")
+  }, [setContainer])
+
   return (
     <>
       <Helmet>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
-      <Layout isGallery seo={{ title: "Madline Vslr - Galerie privée" }}>
-        <div className="gallery-all">
-          {data.map(
-            (el, i) =>
-              !el.node.password && (
-                <ProjectPreview key={i} isPrivate {...el.node} />
-              )
-          )}
-        </div>
-      </Layout>
+      {/* <Layout isGallery seo={{ title: "Madline Vslr - Galerie privée" }}> */}
+      <div className="gallery-all">
+        {data.map(
+          (el, i) =>
+            !el.node.password && (
+              <ProjectPreview key={i} isPrivate {...el.node} />
+            )
+        )}
+      </div>
+      {/* </Layout> */}
     </>
   )
 }

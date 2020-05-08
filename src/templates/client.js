@@ -1,9 +1,9 @@
-import React, { useState } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import PropTypes from "prop-types"
 import { graphql } from "gatsby"
 import cn from "classnames"
 import Helmet from "react-helmet"
-import Layout from "../hoc/layout"
+import { LayoutContext } from "../context/layoutContext"
 import Login from "../components/login"
 import "../style/main.scss"
 
@@ -12,12 +12,18 @@ const Client = ({
     prismic: { client },
   },
 }) => {
+  const { setContainer } = useContext(LayoutContext)
+
   const [clientPassword, setPassword] = useState("")
   const [isCorrect, setCorrect] = useState(false)
   const [hasError, setError] = useState(false)
   const [isDisabled, setDisabled] = useState(true)
 
   const data = client.edges.slice(0, 1).pop().node
+
+  useEffect(() => {
+    setContainer("")
+  }, [setContainer])
 
   const handleChange = e => {
     if (hasError) {
@@ -49,59 +55,58 @@ const Client = ({
         <meta name="robots" content="noindex, nofollow" />
         <title>{data.title}</title>
       </Helmet>
-      <Layout>
-        {!isCorrect && (
-          <Login
-            onSubmit={checkPassword}
-            onChange={handleChange}
-            isDisabled={isDisabled}
-            clientPassword={clientPassword}
-            hasError={hasError}
-          />
-        )}
 
-        {isCorrect && (
-          <div className="client-page">
-            <div className="intro">
-              <div className="title">
-                <h1>{data.title}</h1>
-                {data.date && <p className="date">{data.date}</p>}
-                {data.place && <p className="place">{data.place}</p>}
-              </div>
-              {data.downloadLink?.url && (
-                <a
-                  href={data.downloadLink.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Télécharger toutes les photos
-                </a>
-              )}
+      {!isCorrect && (
+        <Login
+          onSubmit={checkPassword}
+          onChange={handleChange}
+          isDisabled={isDisabled}
+          clientPassword={clientPassword}
+          hasError={hasError}
+        />
+      )}
+
+      {isCorrect && (
+        <div className="client-page">
+          <div className="intro">
+            <div className="title">
+              <h1>{data.title}</h1>
+              {data.date && <p className="date">{data.date}</p>}
+              {data.place && <p className="place">{data.place}</p>}
             </div>
-            <div className="photos">
-              {data.photos.map((photo, index) => (
-                <img
-                  key={index}
-                  src={photo.image.url}
-                  alt={photo.image?.alt}
-                  className={cn(
-                    {
-                      portrait:
-                        photo.image.dimensions.width <
-                        photo.image.dimensions.height,
-                    },
-                    {
-                      landscape:
-                        photo.image.dimensions.width >
-                        photo.image.dimensions.height,
-                    }
-                  )}
-                />
-              ))}
-            </div>
+            {data.downloadLink?.url && (
+              <a
+                href={data.downloadLink.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Télécharger toutes les photos
+              </a>
+            )}
           </div>
-        )}
-      </Layout>
+          <div className="photos">
+            {data.photos.map((photo, index) => (
+              <img
+                key={index}
+                src={photo.image.url}
+                alt={photo.image?.alt}
+                className={cn(
+                  {
+                    portrait:
+                      photo.image.dimensions.width <
+                      photo.image.dimensions.height,
+                  },
+                  {
+                    landscape:
+                      photo.image.dimensions.width >
+                      photo.image.dimensions.height,
+                  }
+                )}
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </>
   )
 }

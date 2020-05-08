@@ -1,6 +1,7 @@
-import React from "react"
+import React, { useEffect, useContext } from "react"
 import PropTypes from "prop-types"
 import { graphql, Link } from "gatsby"
+import { LayoutContext } from "../context/layoutContext"
 import ProjectSlices from "../components/projectSlices"
 import ProjectHeader from "../components/projectHeader"
 
@@ -9,7 +10,13 @@ const Project = ({
     prismic: { project },
   },
 }) => {
+  const { setContainer } = useContext(LayoutContext)
+
   const data = project.edges.slice(0, 1).pop().node
+
+  useEffect(() => {
+    setContainer("isGallery")
+  }, [setContainer])
 
   return (
     <>

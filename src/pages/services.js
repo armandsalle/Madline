@@ -1,8 +1,8 @@
-import React from "react"
+import React, { useContext, useEffect } from "react"
 import PropTypes from "prop-types"
 import { graphql } from "gatsby"
-import Layout from "../hoc/layout"
 import Service from "../components/serviceItem"
+import { LayoutContext } from "../context/layoutContext"
 
 export const servicesQuery = graphql`
   query Services {
@@ -29,14 +29,22 @@ const Services = ({
     prismic: { services },
   },
 }) => {
+  const { setContainer } = useContext(LayoutContext)
+
+  useEffect(() => {
+    setContainer("")
+  }, [setContainer])
+
   return (
-    <Layout
-      seo={{ title: services?.pageTitle, desc: services?.pageDescription }}
-    >
+    // <Layout
+    //   seo={{ title: services?.pageTitle, desc: services?.pageDescription }}
+    // >
+    <>
       {services.services.map((el, i) => (
         <Service key={i} {...el} />
       ))}
-    </Layout>
+    </>
+    // </Layout>
   )
 }
 

@@ -1,7 +1,8 @@
-import React from "react"
+import React, { useContext, useEffect } from "react"
 import PropTypes from "prop-types"
 import { graphql } from "gatsby"
-import Layout from "../hoc/layout"
+import { LayoutContext } from "../context/layoutContext"
+// import Layout from "../hoc/layout"
 import RichText from "../components/richText"
 import facebook from "../images/facebook.webp"
 import instagram from "../images/insta.webp"
@@ -15,64 +16,70 @@ const Contact = ({
     prismic: { contact },
   },
 }) => {
+  const { setContainer } = useContext(LayoutContext)
+
+  useEffect(() => {
+    setContainer("")
+  }, [setContainer])
+
   return (
-    <Layout seo={{ title: contact?.pageTitle, desc: contact?.pageDescription }}>
-      <div className="contact">
-        <div className="content">
-          <picture>
-            <source
-              type="image/webp"
-              srcSet={pinterest}
-              alt="Pinterest logo"
-              className="icone icone-pin"
-            />
-            <img
-              src={pinterestPng}
-              alt="Pinterest logo"
-              className="icone icone-pin"
-            />
-          </picture>
-
-          <picture>
-            <source
-              type="image/webp"
-              srcSet={facebook}
-              alt="Facebook logo"
-              className="icone icone-fb"
-            />
-            <img
-              src={facebookPng}
-              alt="Facebook logo"
-              className="icone icone-fb"
-            />
-          </picture>
-
-          <picture>
-            <source
-              type="image/webp"
-              srcSet={instagram}
-              alt="Instagram logo"
-              className="icone icone-insta"
-            />
-            <img
-              src={instagramPng}
-              alt="Instagram logo"
-              className="icone icone-insta"
-            />
-          </picture>
-
-          <div className="title">
-            <h1>{contact.title}</h1>
-          </div>
-          <RichText data={contact.description} className="description" />
-          <img
-            src={contact.backgroundImage.url}
-            alt={contact.backgroundImage?.alt}
-            className="bg-image"
+    // <Layout seo={{ title: contact?.pageTitle, desc: contact?.pageDescription }}>
+    <div className="contact">
+      <div className="content">
+        <picture>
+          <source
+            type="image/webp"
+            srcSet={pinterest}
+            alt="Pinterest logo"
+            className="icone icone-pin"
           />
+          <img
+            src={pinterestPng}
+            alt="Pinterest logo"
+            className="icone icone-pin"
+          />
+        </picture>
+
+        <picture>
+          <source
+            type="image/webp"
+            srcSet={facebook}
+            alt="Facebook logo"
+            className="icone icone-fb"
+          />
+          <img
+            src={facebookPng}
+            alt="Facebook logo"
+            className="icone icone-fb"
+          />
+        </picture>
+
+        <picture>
+          <source
+            type="image/webp"
+            srcSet={instagram}
+            alt="Instagram logo"
+            className="icone icone-insta"
+          />
+          <img
+            src={instagramPng}
+            alt="Instagram logo"
+            className="icone icone-insta"
+          />
+        </picture>
+
+        <div className="title">
+          <h1>{contact.title}</h1>
         </div>
+        <RichText data={contact.description} className="description" />
+        <img
+          src={contact.backgroundImage.url}
+          alt={contact.backgroundImage?.alt}
+          className="bg-image"
+        />
       </div>
-    </Layout>
+    </div>
+    // </Layout>
   )
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import PropTypes from "prop-types"
 import { StaticQuery, graphql, Link } from "gatsby"
 import cn from "classnames"
@@ -6,6 +6,7 @@ import "../style/main.scss"
 import About from "../components/about"
 import Nav from "../components/nav"
 import Seo from "../components/seo"
+import { LayoutContext } from "../context/layoutContext"
 
 const graphRequest = graphql`
   {
@@ -28,14 +29,8 @@ const graphRequest = graphql`
   }
 `
 
-const LayoutContainer = ({
-  children,
-  isLarge,
-  isGallery,
-  isSlice,
-  data,
-  seo,
-}) => {
+const LayoutContainer = ({ children, data, seo }) => {
+  const { container } = useContext(LayoutContext)
   const {
     prismic: { layout, categories },
   } = data
@@ -167,9 +162,9 @@ const LayoutContainer = ({
 
         <div
           className={cn("container", {
-            large: isLarge,
-            gallery: isGallery,
-            slice: isSlice,
+            large: container === "isLarge",
+            gallery: container === "isGallery",
+            slice: container === "isSlice",
           })}
         >
           {children}
