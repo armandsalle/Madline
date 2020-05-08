@@ -171,7 +171,11 @@ const LayoutContainer = ({ children, data }) => {
         </div>
 
         <About {...layout} state={about} />
-        <Nav categoriesList={categoriesList} state={menu} />
+        <Nav
+          categoriesList={categoriesList}
+          state={menu}
+          closeModals={closeModals}
+        />
       </div>
     </>
   )

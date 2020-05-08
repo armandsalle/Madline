@@ -4,9 +4,17 @@ import gsap from "gsap"
 import bgIamge from "../images/menu.webp"
 import bgIamgePng from "../images/menu.png"
 
-const Nav = ({ categoriesList, state }) => {
+const Nav = ({ categoriesList, state, closeModals }) => {
   const nav = useRef(null)
   const categoriesUl = useRef(null)
+
+  const handleClickLink = () => {
+    if (window.innerWidth >= 770) {
+      hideCat().play()
+    }
+    hideMenu().play()
+    closeModals()
+  }
 
   const showMenu = () => {
     gsap.set(".nav", { display: "flex", opacity: 0 })
@@ -143,24 +151,36 @@ const Nav = ({ categoriesList, state }) => {
           <ul ref={categoriesUl}>
             {categoriesList.map(cat => (
               <li key={cat}>
-                <Link to={`/gallery/${cat.toLowerCase()}`} state={{ cat }}>
+                <Link
+                  to={`/gallery/${cat.toLowerCase()}`}
+                  onClick={handleClickLink}
+                  state={{ cat }}
+                >
                   {cat}
                 </Link>
               </li>
             ))}
             <li>
-              <Link to="/gallery">Tout</Link>
+              <Link to="/gallery" onClick={handleClickLink}>
+                Tout
+              </Link>
             </li>
             <li>
-              <Link to="/gallery/private">Gallerie privée</Link>
+              <Link to="/gallery/private" onClick={handleClickLink}>
+                Gallerie privée
+              </Link>
             </li>
           </ul>
         </li>
         <li>
-          <Link to="/services">Services</Link>
+          <Link to="/services" onClick={handleClickLink}>
+            Services
+          </Link>
         </li>
         <li>
-          <Link to="/contact">Contact</Link>
+          <Link to="/contact" onClick={handleClickLink}>
+            Contact
+          </Link>
         </li>
       </ul>
     </nav>
