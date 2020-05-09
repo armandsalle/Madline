@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from "react"
 import PropTypes from "prop-types"
 import { graphql } from "gatsby"
-import cn from "classnames"
 import Helmet from "react-helmet"
 import { LayoutContext } from "../context/layoutContext"
 import Login from "../components/login"
-import "../style/main.scss"
+import ClientGridPhotos from "../components/clientGridPhotos"
+import ClientIntro from "../components/clientIntro"
 
 const Client = ({
   data: {
@@ -68,43 +68,13 @@ const Client = ({
 
       {isCorrect && (
         <div className="client-page">
-          <div className="intro">
-            <div className="title">
-              <h1>{data.title}</h1>
-              {data.date && <p className="date">{data.date}</p>}
-              {data.place && <p className="place">{data.place}</p>}
-            </div>
-            {data.downloadLink?.url && (
-              <a
-                href={data.downloadLink.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Télécharger toutes les photos
-              </a>
-            )}
-          </div>
-          <div className="photos">
-            {data.photos.map((photo, index) => (
-              <img
-                key={index}
-                src={photo.image.url}
-                alt={photo.image?.alt}
-                className={cn(
-                  {
-                    portrait:
-                      photo.image.dimensions.width <
-                      photo.image.dimensions.height,
-                  },
-                  {
-                    landscape:
-                      photo.image.dimensions.width >
-                      photo.image.dimensions.height,
-                  }
-                )}
-              />
-            ))}
-          </div>
+          <ClientIntro
+            date={data.date}
+            place={data.place}
+            title={data.title}
+            downloadLink={data.downloadLink}
+          />
+          <ClientGridPhotos photos={data.photos} />
         </div>
       )}
     </>
