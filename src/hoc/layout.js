@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react"
+import React, { useState, useContext, useEffect } from "react"
 import PropTypes from "prop-types"
 import { StaticQuery, graphql, Link } from "gatsby"
 import cn from "classnames"
@@ -53,6 +53,31 @@ const LayoutContainer = ({ children, data, location }) => {
 
   const [disableAbout, setDisableAbout] = useState(false)
   const [disableMenu, setDisableMenu] = useState(false)
+
+  useEffect(() => {
+    const images = Array.from(document.querySelectorAll("img"))
+    const laoder = document.querySelector(".loading")
+
+    let time = 0
+
+    let stateCheck = setInterval(() => {
+      const imagesCompleted = [...images].reduce((acc, img) => {
+        return img.complete ? (acc = acc - 1) : acc
+      }, images.length)
+
+      if (
+        (document.readyState === "complete" && imagesCompleted === 0) ||
+        time >= 15
+      ) {
+        clearInterval(stateCheck)
+        laoder.style.opacity = "0"
+        laoder.addEventListener("animationend", () => {
+          laoder.style.display = "none"
+        })
+      }
+      time++
+    }, 100)
+  }, [])
 
   // Methods
   let body
@@ -177,6 +202,7 @@ const LayoutContainer = ({ children, data, location }) => {
           closeModals={closeModals}
         />
       </div>
+      <div className="loading"></div>
     </>
   )
 }
