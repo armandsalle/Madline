@@ -18,6 +18,11 @@ const ProjectHeader = ({ title, date, place, description, thumbnail, seo }) => {
 
   useEffect(() => {
     if (inView) {
+      gsap.to(`.project-title span`, {
+        opacity: 1,
+        y: 0,
+        ease: "Power2.easeOut",
+      })
       gsap.to(`.place`, {
         opacity: 1,
         delay: 0.2,
@@ -33,6 +38,10 @@ const ProjectHeader = ({ title, date, place, description, thumbnail, seo }) => {
         delay: 0.3,
         ease: "Power2.easeOut",
       })
+      gsap.to(".preview-img", {
+        scale: 1,
+        ease: "Power2.easeOut",
+      })
     }
   }, [inView])
 
@@ -41,7 +50,9 @@ const ProjectHeader = ({ title, date, place, description, thumbnail, seo }) => {
       <div className="gallery-preview">
         <div className="infos">
           <div className="title">
-            <h1>{title}</h1>
+            <h1 className="project-title">
+              <span>{title}</span>
+            </h1>
             {date && <div className={`date animate-opacity`}>{date}</div>}
             {place && <div className={`place animate-opacity`}>{place}</div>}
           </div>
@@ -54,7 +65,7 @@ const ProjectHeader = ({ title, date, place, description, thumbnail, seo }) => {
           <img
             src={thumbnail.url}
             alt={thumbnail?.alt}
-            className={`preview-img`}
+            className="preview-img"
           />
         </div>
       </div>

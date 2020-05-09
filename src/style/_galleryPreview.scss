@@ -56,6 +56,17 @@
       .title {
         position: relative;
 
+        .project-title {
+
+          overflow: hidden;
+
+          & span {
+            display: block;
+            opacity: 0;
+            transform: translateY(100%);
+          }
+        }
+
         .lock {
           position: absolute;
           top: 64%;
@@ -134,6 +145,10 @@
     }
 
     a.thumbnail:hover>img {
+      transform: scale(1.05);
+    }
+
+    .preview-img {
       transform: scale(1.05);
     }
 
