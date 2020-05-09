@@ -107,6 +107,8 @@
       height: 100%;
       width: 100%;
       text-decoration: none;
+      overflow: hidden;
+      pointer-events: fill;
 
       @media screen and (max-width: $bp-largest) {
         width: 50%;
@@ -124,7 +126,15 @@
         object-fit: cover;
         width: 100%;
         height: 100%;
+        transition: transform .3s ease-in-out;
+        will-change: transform;
       }
+
+
+    }
+
+    a.thumbnail:hover>img {
+      transform: scale(1.05);
     }
 
     &:first-child {

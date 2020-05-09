@@ -28,7 +28,8 @@ const Gallery = ({
   return (
     <div className="gallery-all">
       {data.map(
-        (el, i) => !el.node.password && <ProjectPreview key={i} {...el.node} />
+        (el, i) =>
+          !el.node.password && <ProjectPreview key={i} index={i} {...el.node} />
       )}
     </div>
   )

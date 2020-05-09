@@ -1,5 +1,7 @@
-import React from "react"
+import React, { useEffect } from "react"
 import PropTypes from "prop-types"
+import gsap from "gsap"
+import { useInView } from "react-intersection-observer"
 import { Link } from "gatsby"
 import lock from "../images/lock.svg"
 
@@ -10,16 +12,71 @@ const ProjectPreview = ({
   thumbnail,
   title,
   _meta: { uid },
+  index,
 }) => {
+  const [refView, inView] = useInView({
+    threshold: 0.6,
+  })
+
+  useEffect(() => {
+    if (inView) {
+      gsap.to(`.place-${index}`, {
+        opacity: 1,
+        delay: 0.2,
+        ease: "Power2.easeOut",
+      })
+      gsap.to(`.date-${index}`, {
+        opacity: 1,
+        delay: 0.34,
+        ease: "Power2.easeOut",
+      })
+    } else {
+      gsap.to(`.place-${index}`, {
+        opacity: 0,
+        delay: 0.2,
+        ease: "Power2.easeOut",
+      })
+      gsap.to(`.date-${index}`, {
+        opacity: 0,
+        delay: 0.34,
+        ease: "Power2.easeOut",
+      })
+    }
+  }, [inView, index])
+
+  // const transition = () => {
+  //   gsap.to(`.title-animate`, {
+  //     opacity: 0,
+  //   })
+  //   gsap.to(`.place-${index}`, {
+  //     opacity: 0,
+  //     delay: 0.2,
+  //     ease: "Power2.easeOut",
+  //   })
+  //   gsap.to(`.date-${index}`, {
+  //     opacity: 0,
+  //     delay: 0.34,
+  //     ease: "Power2.easeOut",
+  //   })
+  // }
+
   return (
-    <div className="gallery-preview">
+    <div className="gallery-preview" ref={refView}>
       <div className="infos">
         <Link to={isPrivate ? `/gallery/private/${uid}` : `/gallery/${uid}`}>
           <div className="title">
             {isPrivate && <img src={lock} alt="Lock icon" className="lock" />}
-            <h1>{title}</h1>
-            {date && <div className="date">{date}</div>}
-            {place && <div className="place">{place}</div>}
+            <h1 className="title-animate">{title}</h1>
+            {date && (
+              <div className={`date animate-opacity date-${index}`}>
+                <span>{date}</span>
+              </div>
+            )}
+            {place && (
+              <div className={`place animate-opacity place-${index}`}>
+                {place}
+              </div>
+            )}
           </div>
         </Link>
       </div>
@@ -51,6 +108,7 @@ ProjectPreview.propTypes = {
     url: PropTypes.string,
   }),
   title: PropTypes.string,
+  index: PropTypes.number,
 }
 
 export default ProjectPreview

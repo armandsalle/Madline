@@ -20,7 +20,7 @@ const Contact = ({
   const { setSeo } = useContext(SeoContext)
 
   useEffect(() => {
-    setContainer("")
+    setContainer("isLarge")
     setSeo({ title: contact?.pageTitle, desc: contact?.pageDescription })
   }, [setContainer, setSeo, contact])
 

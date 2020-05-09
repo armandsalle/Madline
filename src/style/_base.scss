@@ -82,3 +82,16 @@ img {
 .page.exited {
   opacity: 0;
 }
+
+.loading {
+  position: fixed;
+  background-color: var(--color-beige);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity .4s ease-in-out;
+}
