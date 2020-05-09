@@ -69,20 +69,6 @@ img {
   pointer-events: none;
 }
 
-.page {
-  transition: opacity 0.4s;
-}
-
-.page.entering,
-.page.entered {
-  opacity: 1;
-}
-
-.page.exiting,
-.page.exited {
-  opacity: 0;
-}
-
 .loading {
   position: fixed;
   background-color: var(--color-beige);
