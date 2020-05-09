@@ -1,6 +1,7 @@
 .home {
   width: 100%;
   min-height: 100vh;
+  min-height: -webkit-fill-aviable;
   display: flex;
   justify-content: center;
   align-items: center;

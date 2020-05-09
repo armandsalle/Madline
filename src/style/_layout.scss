@@ -1,10 +1,15 @@
 .layout {
+  position: relative;
 
   .header__logo,
   .header__menu,
   .header__about {
     z-index: 999;
     position: fixed;
+
+    @media screen and (max-width: $bp-medium) {
+      position: absolute;
+    }
 
     &:disabled {
       opacity: 1;
@@ -96,7 +101,7 @@
 
       @media screen and (max-width: $bp-medium) {
         transform: translate(-50%, -50%);
-        top: 25%;
+        top: 78%;
       }
     }
 
@@ -249,6 +254,7 @@
 
   @media screen and (max-width: $bp-medium) {
     max-width: 100%;
+    padding-top: 12rem;
   }
 
 }

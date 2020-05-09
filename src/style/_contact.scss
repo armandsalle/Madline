@@ -23,10 +23,7 @@
                 left: 0;
 
                 @media screen and (max-width: $bp-medium) {
-                    bottom: -10%;
-                    left: 0;
-                    right: unset;
-                    top: unset;
+                    display: none;
                 }
             }
 
@@ -35,10 +32,7 @@
                 top: 10%;
 
                 @media screen and (max-width: $bp-medium) {
-                    bottom: -10%;
-                    left: 4.6rem;
-                    right: unset;
-                    top: unset;
+                    display: none;
                 }
             }
 
@@ -47,10 +41,7 @@
                 top: -20%;
 
                 @media screen and (max-width: $bp-medium) {
-                    bottom: -10%;
-                    left: 9.2rem;
-                    right: unset;
-                    top: unset;
+                    display: none;
                 }
             }
         }
@@ -102,6 +93,7 @@
 
         @media screen and (max-width: $bp-medium) {
             top: 12rem;
+            opacity: .5;
         }
     }
 }
