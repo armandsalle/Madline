@@ -41,7 +41,7 @@ const Services = ({
   return (
     <>
       {services.services.map((el, i) => (
-        <Service key={i} {...el} />
+        <Service key={i} index={i} {...el} />
       ))}
     </>
   )

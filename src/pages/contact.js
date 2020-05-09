@@ -10,6 +10,7 @@ import pinterest from "../images/pinterest.webp"
 import facebookPng from "../images/facebook.png"
 import instagramPng from "../images/insta.png"
 import pinterestPng from "../images/pinterest.png"
+import gsap from "gsap"
 
 const Contact = ({
   data: {
@@ -23,6 +24,22 @@ const Contact = ({
     setContainer("isLarge")
     setSeo({ title: contact?.pageTitle, desc: contact?.pageDescription })
   }, [setContainer, setSeo, contact])
+
+  useEffect(() => {
+    gsap.to([".icone"], {
+      opacity: 1,
+      scale: 1,
+      stagger: {
+        amount: 0.2,
+      },
+      duration: 0.6,
+    })
+
+    gsap.to(".description", {
+      opacity: 1,
+      delay: 0.2,
+    })
+  }, [])
 
   return (
     <div className="contact">

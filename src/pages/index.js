@@ -2,7 +2,6 @@ import React, { useEffect, useContext } from "react"
 import PropTypes from "prop-types"
 import gsap from "gsap"
 import { graphql } from "gatsby"
-import { useInView } from "react-intersection-observer"
 import RichText from "../components/richText"
 import { LayoutContext } from "../context/layoutContext"
 import { SeoContext } from "../context/seoContext"
@@ -15,40 +14,27 @@ const Index = ({
   const { setContainer } = useContext(LayoutContext)
   const { setSeo } = useContext(SeoContext)
 
-  const [anime, inView] = useInView({
-    threshold: 0,
-  })
-
-  const [volet, voletInView] = useInView({
-    threshold: 0,
-  })
-
   useEffect(() => {
     setContainer("isLarge")
     setSeo({})
   }, [setContainer, setSeo])
 
   useEffect(() => {
-    if (inView) {
-      gsap.to(".animate-text *", {
-        y: 0,
-        opacity: 1,
-        delay: 0.4,
-        duration: 0.3,
-      })
-    }
-
-    if (voletInView) {
-      gsap.to([".volet-img"], {
-        width: "0",
-        stagger: {
-          amount: 0.2,
-        },
-        ease: "Sine.easeOut",
-        duration: 0.3,
-      })
-    }
-  }, [inView, voletInView])
+    gsap.to(".animate-text *", {
+      y: 0,
+      opacity: 1,
+      delay: 0.4,
+      duration: 0.3,
+    })
+    gsap.to([".volet-img"], {
+      width: "0",
+      stagger: {
+        amount: 0.2,
+      },
+      ease: "Sine.easeOut",
+      duration: 0.3,
+    })
+  }, [])
 
   return (
     <div className="home">
@@ -57,7 +43,7 @@ const Index = ({
           return i === 0 ? (
             <div className="img-block" key={i}>
               <img src={el.image.url} alt={el.image?.alt} />
-              <div className="volet-img" ref={volet}></div>
+              <div className="volet-img"></div>
             </div>
           ) : null
         })}
@@ -66,13 +52,13 @@ const Index = ({
             return i !== 0 ? (
               <div className="img-block" key={i}>
                 <img src={el.image.url} alt={el.image?.alt} />
-                <div className="volet-img" ref={volet}></div>
+                <div className="volet-img"></div>
               </div>
             ) : null
           })}
         </div>
       </div>
-      <div className="home-title overflow-hidden " ref={anime}>
+      <div className="home-title overflow-hidden">
         <RichText data={home.heroTitle} />
         {home.subTitle && (
           <p className="home-subTitle animate-text appear-y">
