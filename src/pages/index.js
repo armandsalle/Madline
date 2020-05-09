@@ -44,7 +44,7 @@ const Index = ({
         stagger: {
           amount: 0.2,
         },
-        ease: "Power3.easeIn",
+        ease: "Sine.easeOut",
         duration: 0.3,
       })
     }
