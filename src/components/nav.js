@@ -167,7 +167,7 @@ const Nav = ({ categoriesList, state, closeModals }) => {
             </li>
             <li>
               <Link to="/gallery/private" onClick={handleClickLink}>
-                Gallerie privée
+                Galerie privée
               </Link>
             </li>
           </ul>
