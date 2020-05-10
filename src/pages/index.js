@@ -29,7 +29,7 @@ const Index = ({
       duration: 0.4,
     })
 
-    gsap.to(".animate-text *", {
+    gsap.to(".home-subTitle span", {
       y: 0,
       opacity: 1,
       delay: 0.5,
@@ -60,7 +60,7 @@ const Index = ({
       <div className="home-title overflow-hidden">
         <RichText data={home.heroTitle} />
         {home.subTitle && (
-          <p className="home-subTitle animate-text appear-y">
+          <p className="home-subTitle">
             <span>{home.subTitle}</span>
           </p>
         )}

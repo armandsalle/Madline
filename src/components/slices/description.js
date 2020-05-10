@@ -1,11 +1,24 @@
-import React from "react"
+import React, { useEffect } from "react"
 import PropTypes from "prop-types"
+import { useInView } from "react-intersection-observer"
 
 const Description = ({ fields }) => {
+  const [refView, inView, entry] = useInView({
+    threshold: 0.4,
+    rootMargin: "-100px",
+    triggerOnce: true,
+  })
+
+  useEffect(() => {
+    if (inView) {
+      entry.target.classList.remove("opacity-0")
+    }
+  }, [inView, entry])
+
   if (fields.length === 0) return
 
   return (
-    <div className="slice__description slice">
+    <div className="slice__description slice opacity-0" ref={refView}>
       <div className="titles">
         {fields &&
           fields.map(({ descTitle }, index) => (

@@ -283,6 +283,8 @@
 .next {
   width: 100%;
   margin-bottom: 6rem;
+  overflow: hidden;
+
 
   a {
     text-decoration: none;
@@ -291,6 +293,8 @@
     line-height: 1.4;
     text-align: center;
     display: block;
+    transition: opacity .3s ease-in-out, transform .3s ease-in-out;
+    transition-delay: .2s;
   }
 }
 

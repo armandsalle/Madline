@@ -89,6 +89,13 @@
     font-size: 1.4vw;
     margin-top: 1rem;
     font-weight: 300;
+    overflow: hidden;
+
+    & span {
+      display: block;
+      opacity: 0;
+      transform: translateY(100%);
+    }
 
     @media screen and (max-width: $bp-medium) {
       max-width: 100%;

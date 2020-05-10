@@ -1,6 +1,7 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useRef } from "react"
 import PropTypes from "prop-types"
 import { graphql } from "gatsby"
+import ScrollSnap from "scroll-snap"
 import { LayoutContext } from "../../context/layoutContext"
 import { SeoContext } from "../../context/seoContext"
 import ProjectPreview from "../../components/projectPreview"
@@ -13,6 +14,7 @@ const Gallery = ({
 }) => {
   const { setContainer } = useContext(LayoutContext)
   const { setSeo } = useContext(SeoContext)
+  const scrollRef = useRef()
 
   const data = pageContext.uid
     ? projets.edges.filter(
@@ -25,8 +27,24 @@ const Gallery = ({
     setSeo({ title: galerie?.pageTitle, desc: galerie?.pageDescription })
   }, [setSeo, setContainer, galerie])
 
+  useEffect(() => {
+    if (window.innerWidth >= 1000) {
+      bindScrollSnap()
+    }
+  }, [])
+
+  const bindScrollSnap = () => {
+    const element = scrollRef.current
+    const snapElement = new ScrollSnap(element, {
+      snapDestinationY: "90vh",
+      time: true,
+    })
+
+    snapElement.bind()
+  }
+
   return (
-    <div className="gallery-all">
+    <div className="gallery-all" ref={scrollRef}>
       {data.map(
         (el, i) =>
           !el.node.password && <ProjectPreview key={i} index={i} {...el.node} />

@@ -12,37 +12,38 @@ const ServiceItem = ({
   description,
   leftInfo,
   rightInfo,
-  index,
 }) => {
-  const [inViewRef, inViewLocalisation] = useInView({
+  const [inViewRef, inViewLocalisation, entry] = useInView({
     threshold: 0,
-    rootMargin: "100px",
+    rootMargin: "-100px",
     triggerOnce: true,
   })
 
-  const [inViewRef2, inViewImg] = useInView({
-    threshold: 0.2,
+  const [inViewRef2, inViewImg, entry2] = useInView({
+    threshold: 0,
+    rootMargin: "-100px",
     triggerOnce: true,
   })
 
   useEffect(() => {
     if (inViewLocalisation) {
-      gsap.to(`.service-item-${index} .localisation span`, {
+      gsap.to(entry.target.children, {
         y: 0,
-        delay: 0.5,
+        delay: 0.4,
       })
     }
 
     if (inViewImg) {
-      gsap.to(`.service-item-${index} .service-item__image img`, {
+      gsap.to(entry2.target.children, {
         opacity: 1,
         duration: 0.5,
+        delay: 0.3,
       })
     }
-  }, [inViewLocalisation, inViewImg, index])
+  }, [inViewLocalisation, inViewImg, entry, entry2])
 
   return (
-    <div className={`service-item service-item-${index}`}>
+    <div className="service-item">
       <div className="service-item__info">
         {title && <h2 style={{ "--bg-img": `url(${icone.url})` }}>{title}</h2>}
         {subTitle && (
@@ -87,7 +88,6 @@ ServiceItem.propTypes = {
   rightInfo: PropTypes.arrayOf(spanstexttypeShape),
   subTitle: PropTypes.string,
   title: PropTypes.string,
-  index: PropTypes.number,
 }
 
 export default ServiceItem

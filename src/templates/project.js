@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from "react"
 import PropTypes from "prop-types"
 import { graphql, Link } from "gatsby"
+import { useInView } from "react-intersection-observer"
 import { LayoutContext } from "../context/layoutContext"
 import ProjectSlices from "../components/projectSlices"
 import ProjectHeader from "../components/projectHeader"
@@ -11,12 +12,21 @@ const Project = ({
   },
 }) => {
   const { setContainer } = useContext(LayoutContext)
-
   const data = project.edges.slice(0, 1).pop().node
+  const [refView, inView, entry] = useInView({
+    threshold: 0,
+    triggerOnce: true,
+  })
 
   useEffect(() => {
     setContainer("isGallery")
   }, [setContainer])
+
+  useEffect(() => {
+    if (inView) {
+      entry.target.classList.remove("appear-y", "opacity-0")
+    }
+  }, [inView, entry])
 
   return (
     <>
@@ -30,7 +40,9 @@ const Project = ({
       />
       <ProjectSlices slices={data.body} />
       <div className="next">
-        <Link to="/gallery">Retour</Link>
+        <Link to="/gallery" className="appear-y opacity-0" ref={refView}>
+          Retour
+        </Link>
       </div>
     </>
   )

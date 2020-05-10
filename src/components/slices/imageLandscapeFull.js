@@ -1,10 +1,27 @@
-import React from "react"
+import React, { useEffect } from "react"
 import PropTypes from "prop-types"
+import { useInView } from "react-intersection-observer"
 
 const ImageLandscapeFull = ({ primary: { imageFull, name } }) => {
+  const [refView, inView, entry] = useInView({
+    threshold: 0,
+    rootMargin: "-100px",
+    triggerOnce: true,
+  })
+
+  useEffect(() => {
+    if (inView) {
+      entry.target.classList.remove("opacity-0")
+    }
+  }, [inView, entry])
   return (
     <div className="slice__imageLandscapeFull slice">
-      <img src={imageFull.url} alt={imageFull?.alt} />
+      <img
+        src={imageFull.url}
+        alt={imageFull?.alt}
+        className="opacity-0"
+        ref={refView}
+      />
       {name && <div className="credit">{name}</div>}
     </div>
   )

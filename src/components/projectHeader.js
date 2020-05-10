@@ -46,17 +46,17 @@ const ProjectHeader = ({ title, date, place, description, thumbnail, seo }) => {
   }, [inView])
 
   return (
-    <div className="gallery-all" ref={refView}>
+    <div className="gallery-all position-relative" ref={refView}>
       <div className="gallery-preview">
         <div className="infos">
           <div className="title">
             <h1 className="project-title">
               <span>{title}</span>
             </h1>
-            {date && <div className={`date animate-opacity`}>{date}</div>}
-            {place && <div className={`place animate-opacity`}>{place}</div>}
+            {date && <div className="date opacity-0">{date}</div>}
+            {place && <div className="place opacity-0">{place}</div>}
           </div>
-          <div className="description-header animate-opacity">
+          <div className="description-header opacity-0">
             <RichText data={description} />
           </div>
         </div>

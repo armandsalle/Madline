@@ -2,15 +2,14 @@
     overflow: hidden;
 }
 
-.animate-text span {
-    display: block;
-}
-
-.animate-opacity {
-    opacity: 0;
-}
-
-.appear-y * {
+.appear-y {
     transform: translateY(30%);
+}
+
+.position-relative {
+    position: relative;
+}
+
+.opacity-0 {
     opacity: 0;
 }

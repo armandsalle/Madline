@@ -11,56 +11,55 @@ const ProjectPreview = ({
   place,
   thumbnail,
   title,
-  _meta: { uid },
   index,
+  _meta: { uid },
 }) => {
-  const [refView, inViewText] = useInView({
+  const [refView, inViewText, entry] = useInView({
     threshold: 0,
   })
 
   useEffect(() => {
     if (inViewText) {
-      gsap.to(`.place-${index}`, {
+      const element = entry.target
+      gsap.to(element.querySelector(".place"), {
         opacity: 1,
         delay: 0.2,
         ease: "Power2.easeOut",
       })
-      gsap.to(`.date-${index}`, {
+      gsap.to(element.querySelector(".date"), {
         opacity: 1,
         delay: 0.34,
         ease: "Power2.easeOut",
       })
     } else {
-      gsap.to(`.place-${index}`, {
+      const element = document.querySelector(`.e-${index}`)
+
+      gsap.to(element.querySelector(".place"), {
         opacity: 0,
         delay: 0.2,
         ease: "Power2.easeOut",
       })
-      gsap.to(`.date-${index}`, {
+      gsap.to(element.querySelector(".date"), {
         opacity: 0,
         delay: 0.34,
         ease: "Power2.easeOut",
       })
     }
-  }, [inViewText, index])
+  }, [inViewText, entry, index])
 
   return (
-    <div className="gallery-preview">
+    <div className={`gallery-preview e-${index}`}>
       <div className="infos">
         <Link to={isPrivate ? `/gallery/private/${uid}` : `/gallery/${uid}`}>
           <div className="title" ref={refView}>
             {isPrivate && <img src={lock} alt="Lock icon" className="lock" />}
-            <h1 className="title-animate">{title}</h1>
+            <h1>{title}</h1>
             {date && (
-              <div className={`date animate-opacity date-${index}`}>
+              <div className="date">
                 <span>{date}</span>
               </div>
             )}
-            {place && (
-              <div className={`place animate-opacity place-${index}`}>
-                {place}
-              </div>
-            )}
+            {place && <div className="place">{place}</div>}
           </div>
         </Link>
       </div>
