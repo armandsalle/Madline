@@ -33,7 +33,6 @@ const ProjectPreview = ({
       })
     } else {
       const element = document.querySelector(`.e-${index}`)
-
       gsap.to(element.querySelector(".place"), {
         opacity: 0,
         delay: 0.2,

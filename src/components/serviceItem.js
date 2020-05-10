@@ -29,7 +29,7 @@ const ServiceItem = ({
     if (inViewLocalisation) {
       gsap.to(entry.target.children, {
         y: 0,
-        delay: 0.4,
+        delay: 0.2,
       })
     }
 

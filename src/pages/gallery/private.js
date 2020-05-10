@@ -1,7 +1,8 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useRef } from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { graphql } from "gatsby"
+import ScrollSnap from "scroll-snap"
 import { LayoutContext } from "../../context/layoutContext"
 import { SeoContext } from "../../context/seoContext"
 import ProjectPreview from "../../components/projectPreview"
@@ -14,6 +15,7 @@ const Private = ({
 }) => {
   const { setContainer } = useContext(LayoutContext)
   const { setSeo } = useContext(SeoContext)
+  const scrollRef = useRef()
 
   const data = pageContext.uid
     ? client.edges.filter(
@@ -26,18 +28,31 @@ const Private = ({
     setSeo({ title: "Madline Vslr - Galerie privée" })
   }, [setContainer, setSeo])
 
+  useEffect(() => {
+    if (window.innerWidth >= 1000) {
+      bindScrollSnap()
+    }
+  }, [])
+
+  const bindScrollSnap = () => {
+    const element = scrollRef.current
+    const snapElement = new ScrollSnap(element, {
+      snapDestinationY: "90vh",
+      time: true,
+    })
+
+    snapElement.bind()
+  }
+
   return (
     <>
       <Helmet>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
-      <div className="gallery-all">
-        {data.map(
-          (el, i) =>
-            !el.node.password && (
-              <ProjectPreview key={i} isPrivate {...el.node} />
-            )
-        )}
+      <div className="gallery-all list" ref={scrollRef}>
+        {data.map((el, i) => (
+          <ProjectPreview key={i} index={i} isPrivate {...el.node} />
+        ))}
       </div>
     </>
   )

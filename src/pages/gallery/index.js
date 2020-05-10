@@ -44,7 +44,7 @@ const Gallery = ({
   }
 
   return (
-    <div className="gallery-all" ref={scrollRef}>
+    <div className="gallery-all list" ref={scrollRef}>
       {data.map(
         (el, i) =>
           !el.node.password && <ProjectPreview key={i} index={i} {...el.node} />
