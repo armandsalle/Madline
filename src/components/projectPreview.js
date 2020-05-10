@@ -14,12 +14,12 @@ const ProjectPreview = ({
   _meta: { uid },
   index,
 }) => {
-  const [refView, inView] = useInView({
-    threshold: 0.6,
+  const [refView, inViewText] = useInView({
+    threshold: 0,
   })
 
   useEffect(() => {
-    if (inView) {
+    if (inViewText) {
       gsap.to(`.place-${index}`, {
         opacity: 1,
         delay: 0.2,
@@ -42,29 +42,13 @@ const ProjectPreview = ({
         ease: "Power2.easeOut",
       })
     }
-  }, [inView, index])
-
-  // const transition = () => {
-  //   gsap.to(`.title-animate`, {
-  //     opacity: 0,
-  //   })
-  //   gsap.to(`.place-${index}`, {
-  //     opacity: 0,
-  //     delay: 0.2,
-  //     ease: "Power2.easeOut",
-  //   })
-  //   gsap.to(`.date-${index}`, {
-  //     opacity: 0,
-  //     delay: 0.34,
-  //     ease: "Power2.easeOut",
-  //   })
-  // }
+  }, [inViewText, index])
 
   return (
-    <div className="gallery-preview" ref={refView}>
+    <div className="gallery-preview">
       <div className="infos">
         <Link to={isPrivate ? `/gallery/private/${uid}` : `/gallery/${uid}`}>
-          <div className="title">
+          <div className="title" ref={refView}>
             {isPrivate && <img src={lock} alt="Lock icon" className="lock" />}
             <h1 className="title-animate">{title}</h1>
             {date && (

@@ -20,18 +20,19 @@ const Index = ({
   }, [setContainer, setSeo])
 
   useEffect(() => {
+    gsap.to([".img-block img"], {
+      opacity: 1,
+      stagger: {
+        amount: 0.15,
+      },
+      ease: "Sine.easeOut",
+      duration: 0.4,
+    })
+
     gsap.to(".animate-text *", {
       y: 0,
       opacity: 1,
-      delay: 0.4,
-      duration: 0.3,
-    })
-    gsap.to([".volet-img"], {
-      width: "0",
-      stagger: {
-        amount: 0.2,
-      },
-      ease: "Sine.easeOut",
+      delay: 0.5,
       duration: 0.3,
     })
   }, [])
@@ -43,7 +44,6 @@ const Index = ({
           return i === 0 ? (
             <div className="img-block" key={i}>
               <img src={el.image.url} alt={el.image?.alt} />
-              <div className="volet-img"></div>
             </div>
           ) : null
         })}
@@ -52,7 +52,6 @@ const Index = ({
             return i !== 0 ? (
               <div className="img-block" key={i}>
                 <img src={el.image.url} alt={el.image?.alt} />
-                <div className="volet-img"></div>
               </div>
             ) : null
           })}

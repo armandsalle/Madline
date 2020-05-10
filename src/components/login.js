@@ -1,5 +1,6 @@
-import React from "react"
+import React, { useEffect } from "react"
 import PropTypes from "prop-types"
+import gsap from "gsap"
 
 const Login = ({
   onSubmit,
@@ -8,10 +9,24 @@ const Login = ({
   clientPassword,
   hasError,
 }) => {
+  useEffect(() => {
+    gsap.to(".login h1", {
+      opacity: 1,
+      duration: 0.4,
+    })
+    gsap.to([".login__form input", ".login__form button"], {
+      y: 0,
+      stagger: {
+        amount: 0.1,
+      },
+      duration: 0.4,
+    })
+  }, [])
+
   return (
     <div className="login">
       <h1>Connectez-vous</h1>
-      <form className="login__form" onSubmit={e => onSubmit(e)}>
+      <form className="login__form overflow-hidden" onSubmit={e => onSubmit(e)}>
         <input
           type="password"
           placeholder="Mot de passe"

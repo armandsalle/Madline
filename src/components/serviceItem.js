@@ -14,33 +14,39 @@ const ServiceItem = ({
   rightInfo,
   index,
 }) => {
-  const [inViewRef, inView] = useInView({
-    threshold: 0.9,
+  const [inViewRef, inViewLocalisation] = useInView({
+    threshold: 0,
     rootMargin: "100px",
     triggerOnce: true,
   })
 
+  const [inViewRef2, inViewImg] = useInView({
+    threshold: 0.2,
+    triggerOnce: true,
+  })
+
   useEffect(() => {
-    if (inView) {
+    if (inViewLocalisation) {
       gsap.to(`.service-item-${index} .localisation span`, {
         y: 0,
-        ease: "Sine.easeOut",
-      })
-      gsap.to(`.service-item-${index} .volet`, {
-        width: 0,
-        delay: 0.2,
-        duration: 0.4,
-        ease: "Sine.easeOut",
+        delay: 0.5,
       })
     }
-  }, [inView, index])
+
+    if (inViewImg) {
+      gsap.to(`.service-item-${index} .service-item__image img`, {
+        opacity: 1,
+        duration: 0.5,
+      })
+    }
+  }, [inViewLocalisation, inViewImg, index])
 
   return (
-    <div className={`service-item service-item-${index}`} ref={inViewRef}>
+    <div className={`service-item service-item-${index}`}>
       <div className="service-item__info">
         {title && <h2 style={{ "--bg-img": `url(${icone.url})` }}>{title}</h2>}
         {subTitle && (
-          <p className="localisation">
+          <p className="localisation" ref={inViewRef}>
             <span>{subTitle}</span>
           </p>
         )}
@@ -50,9 +56,8 @@ const ServiceItem = ({
           {rightInfo && <RichText data={rightInfo} className="rightInfo" />}
         </div>
       </div>
-      <div className="service-item__image">
+      <div className="service-item__image" ref={inViewRef2}>
         <img src={image.url} alt={image?.alt} />
-        <div className="volet"></div>
       </div>
     </div>
   )
