@@ -28,10 +28,8 @@ const Gallery = ({
   }, [setSeo, setContainer, galerie])
 
   useEffect(() => {
-    console.log(window.innerWidth)
     if (window.innerWidth >= 1000) {
       bindScrollSnap()
-      console.log(true)
     }
   }, [])
 
@@ -43,9 +41,7 @@ const Gallery = ({
       duration: 300,
     })
 
-    const callbackScroll = () => console.log("e")
-
-    snapElement.bind(callbackScroll)
+    snapElement.bind()
   }
 
   return (
