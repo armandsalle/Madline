@@ -78,7 +78,7 @@ export const galleryQuery = graphql`
           }
         }
       }
-      galerie(lang: "fr-fr", uid: "gallery") {
+      galerie: galerie(lang: "fr-fr", uid: "gallery") {
         pageTitle
         pageDescription
       }
