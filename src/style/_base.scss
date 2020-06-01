@@ -70,6 +70,9 @@ img {
 }
 
 .loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   background-color: var(--color-beige);
   top: 0;
@@ -80,4 +83,12 @@ img {
   pointer-events: none;
   opacity: 1;
   transition: opacity .4s ease-in-out;
+
+  img {
+    width: 25rem;
+
+    @media screen and (max-width: $bp-medium) {
+      right: 15rem;
+    }
+  }
 }

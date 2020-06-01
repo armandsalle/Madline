@@ -37,6 +37,7 @@ const Project = ({
         place={data.place}
         description={data.description}
         thumbnail={data.thumbnail}
+        fullHeight={true}
       />
       <ProjectSlices slices={data.body} />
       <div className="next">

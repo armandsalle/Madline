@@ -4,8 +4,17 @@ import gsap from "gsap"
 import { useInView } from "react-intersection-observer"
 import { SeoContext } from "../context/seoContext"
 import RichText from "../components/richText"
+import cn from "classnames"
 
-const ProjectHeader = ({ title, date, place, description, thumbnail, seo }) => {
+const ProjectHeader = ({
+  title,
+  date,
+  place,
+  description,
+  thumbnail,
+  seo,
+  fullHeight,
+}) => {
   const { setSeo } = useContext(SeoContext)
   const [refView, inView] = useInView({
     threshold: 0,
@@ -47,7 +56,7 @@ const ProjectHeader = ({ title, date, place, description, thumbnail, seo }) => {
 
   return (
     <div className="gallery-all position-relative" ref={refView}>
-      <div className="gallery-preview">
+      <div className={cn("gallery-preview", { fullHeight: !!fullHeight })}>
         <div className="infos">
           <div className="title">
             <h1 className="project-title">
@@ -88,6 +97,7 @@ ProjectHeader.propTypes = {
   }),
   description: PropTypes.array,
   seo: PropTypes.object,
+  fullHeight: PropTypes.bool,
 }
 
 export default ProjectHeader
