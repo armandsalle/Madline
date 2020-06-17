@@ -3,7 +3,9 @@ import PropTypes from "prop-types"
 import gsap from "gsap"
 import { useInView } from "react-intersection-observer"
 import { SeoContext } from "../context/seoContext"
+import { CursorContext } from "../context/cursorContext"
 import RichText from "../components/richText"
+
 import cn from "classnames"
 
 const ProjectHeader = ({
@@ -16,6 +18,8 @@ const ProjectHeader = ({
   fullHeight,
 }) => {
   const { setSeo } = useContext(SeoContext)
+  const { setCursor } = useContext(CursorContext)
+
   const [refView, inView] = useInView({
     threshold: 0,
     triggerOnce: true,
@@ -23,7 +27,12 @@ const ProjectHeader = ({
 
   useEffect(() => {
     setSeo(seo ? seo : false)
-  }, [setSeo, seo])
+    setCursor(true)
+
+    return () => {
+      setCursor(false)
+    }
+  }, [setSeo, seo, setCursor])
 
   useEffect(() => {
     if (inView) {
@@ -37,22 +46,24 @@ const ProjectHeader = ({
         delay: 0.2,
         ease: "Power2.easeOut",
       })
-      gsap.to(`.date`, {
-        opacity: 1,
-        delay: 0.34,
-        ease: "Power2.easeOut",
-      })
-      gsap.to(`.description-header`, {
-        opacity: 1,
-        delay: 0.3,
-        ease: "Power2.easeOut",
-      })
+      date &&
+        gsap.to(`.date`, {
+          opacity: 1,
+          delay: 0.34,
+          ease: "Power2.easeOut",
+        })
+      description &&
+        gsap.to(`.description-header`, {
+          opacity: 1,
+          delay: 0.3,
+          ease: "Power2.easeOut",
+        })
       gsap.to(".preview-img", {
         scale: 1,
         ease: "Power2.easeOut",
       })
     }
-  }, [inView])
+  }, [inView, description, date])
 
   return (
     <div className="gallery-all position-relative" ref={refView}>

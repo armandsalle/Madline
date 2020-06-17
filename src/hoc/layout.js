@@ -6,7 +6,10 @@ import "../style/main.scss"
 import About from "../components/about"
 import Nav from "../components/nav"
 import Seo from "../components/seo"
+import CustomCursor from "../components/customCursor"
 import { LayoutContext } from "../context/layoutContext"
+import { CursorContext } from "../context/cursorContext"
+import isMobile from "ismobilejs"
 
 const graphRequest = graphql`
   {
@@ -29,8 +32,10 @@ const graphRequest = graphql`
   }
 `
 
-const LayoutContainer = ({ children, data, location }) => {
+const LayoutContainer = ({ children, data }) => {
   const { container } = useContext(LayoutContext)
+  const { cursor } = useContext(CursorContext)
+
   const {
     prismic: { layout, categories },
   } = data
@@ -135,6 +140,7 @@ const LayoutContainer = ({ children, data, location }) => {
   return (
     <>
       <Seo />
+      {!isMobile(window.navigator).any && cursor && <CustomCursor />}
       <div className="layout">
         <Link to="/" className="header__logo" onClick={closeModals}>
           <img src={layout.logo.url} alt={layout.logo?.alt} />

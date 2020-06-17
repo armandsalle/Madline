@@ -4,17 +4,20 @@ import { linkResolver } from "./src/utils/linkResolver"
 import Layout from "./src/hoc/layout"
 import { LayoutProvider } from "./src/context/layoutContext"
 import { SeoProvider } from "./src/context/seoContext"
+import { CursorProvider } from "./src/context/cursorContext"
 
 registerLinkResolver(linkResolver)
 
-export const onRouteUpdate = ({ location, prevLocation }) => {
+export const onRouteUpdate = () => {
   document.querySelector("body").classList.remove("modal-open")
 }
 
 export const wrapRootElement = ({ element }) => {
   return (
     <SeoProvider>
-      <LayoutProvider>{element}</LayoutProvider>
+      <CursorProvider>
+        <LayoutProvider>{element}</LayoutProvider>
+      </CursorProvider>
     </SeoProvider>
   )
 }
