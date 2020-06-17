@@ -59,6 +59,13 @@ const LayoutContainer = ({ children, data }) => {
   const [disableAbout, setDisableAbout] = useState(false)
   const [disableMenu, setDisableMenu] = useState(false)
 
+  // const [hasWindow, setWindow] = useState(false)
+
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     setWindow(true)
+  //   }
+  // }, [setWindow])
   // Methods
   let body
 
@@ -140,7 +147,9 @@ const LayoutContainer = ({ children, data }) => {
   return (
     <>
       <Seo />
-      {!isMobile(window.navigator).any && cursor && <CustomCursor />}
+      {typeof window !== "undefined" &&
+        !isMobile(window.navigator).any &&
+        cursor && <CustomCursor />}
       <div className="layout">
         <Link to="/" className="header__logo" onClick={closeModals}>
           <img src={layout.logo.url} alt={layout.logo?.alt} />

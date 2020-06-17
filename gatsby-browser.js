@@ -28,7 +28,7 @@ export const wrapPageElement = ({ element, props }) => {
 
 export const onInitialClientRender = () => {
   const images = Array.from(document.querySelectorAll("img"))
-  const laoder = document.querySelector(".loading")
+  const loader = document.querySelector(".loading")
 
   let time = 0
 
@@ -42,9 +42,9 @@ export const onInitialClientRender = () => {
       time >= 15
     ) {
       clearInterval(stateCheck)
-      laoder.style.opacity = "0"
-      laoder.addEventListener("animationend", () => {
-        laoder.style.display = "none"
+      loader.style.opacity = "0"
+      loader.addEventListener("animationend", () => {
+        loader.style.display = "none"
       })
     }
     time++
