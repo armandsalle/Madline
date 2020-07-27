@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react"
 import PropTypes from "prop-types"
 import gsap from "gsap"
+import Img from "gatsby-image"
 import { useInView } from "react-intersection-observer"
 import { SeoContext } from "../context/seoContext"
 import { CursorContext } from "../context/cursorContext"
@@ -14,6 +15,7 @@ const ProjectHeader = ({
   place,
   description,
   thumbnail,
+  thumbnailSharp,
   seo,
   fullHeight,
 }) => {
@@ -82,8 +84,8 @@ const ProjectHeader = ({
         </div>
 
         <div className="thumbnail">
-          <img
-            src={thumbnail.url}
+          <Img
+            fluid={thumbnailSharp.childImageSharp.fluid}
             alt={thumbnail?.alt}
             className="preview-img"
           />

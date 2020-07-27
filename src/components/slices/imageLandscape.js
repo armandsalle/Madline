@@ -1,8 +1,11 @@
 import React, { useEffect } from "react"
+import Img from "gatsby-image"
 import PropTypes from "prop-types"
 import { useInView } from "react-intersection-observer"
 
-const ImageLandscape = ({ primary: { imageLandscape, name } }) => {
+const ImageLandscape = ({
+  primary: { imageLandscape, imageLandscapeSharp, name },
+}) => {
   const [refView, inView, entry] = useInView({
     threshold: 0.1,
     rootMargin: "-100px",
@@ -17,12 +20,13 @@ const ImageLandscape = ({ primary: { imageLandscape, name } }) => {
 
   return (
     <div className="slice__imageLandscape slice">
-      <img
-        src={imageLandscape.url}
-        alt={imageLandscape?.alt}
-        className="opacity-0"
-        ref={refView}
-      />
+      <div className="opacity-0" ref={refView} style={{ flex: "0 0 auto" }}>
+        <Img
+          fluid={imageLandscapeSharp.childImageSharp.fluid}
+          alt={imageLandscape?.alt}
+        />
+      </div>
+
       {name && <div className="credit">{name}</div>}
     </div>
   )

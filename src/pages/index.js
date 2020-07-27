@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from "react"
 import PropTypes from "prop-types"
 import gsap from "gsap"
 import { graphql } from "gatsby"
+import Img from "gatsby-image"
 import RichText from "../components/richText"
 import { LayoutContext } from "../context/layoutContext"
 import { SeoContext } from "../context/seoContext"
@@ -43,7 +44,12 @@ const Index = ({
         {home.heroPhotos.map((el, i) => {
           return i === 0 ? (
             <div className="img-block" key={i}>
-              <img src={el.image.url} alt={el.image?.alt} />
+              <Img
+                fluid={el.imageSharp.childImageSharp.fluid}
+                objectFit="cover"
+                objectPosition="50% 50%"
+                alt={el.image?.alt}
+              />
             </div>
           ) : null
         })}
@@ -51,7 +57,12 @@ const Index = ({
           {home.heroPhotos.map((el, i) => {
             return i !== 0 ? (
               <div className="img-block" key={i}>
-                <img src={el.image.url} alt={el.image?.alt} />
+                <Img
+                  fluid={el.imageSharp.childImageSharp.fluid}
+                  objectFit="cover"
+                  objectPosition="50% 50%"
+                  alt={el.image?.alt}
+                />
               </div>
             ) : null
           })}
@@ -83,6 +94,13 @@ export const indexQuery = graphql`
         subTitle
         heroPhotos {
           image
+          imageSharp {
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
         }
       }
     }

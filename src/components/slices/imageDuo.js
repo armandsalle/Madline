@@ -1,10 +1,19 @@
 import React, { useEffect } from "react"
+import Img from "gatsby-image"
 import PropTypes from "prop-types"
 import { useInView } from "react-intersection-observer"
 
 const ImageDuo = ({
-  primary: { leftImage, leftName, rightImage, rightName },
+  primary: {
+    leftImage,
+    leftImageSharp,
+    leftName,
+    rightImage,
+    rightImageSharp,
+    rightName,
+  },
 }) => {
+  console.log(leftImageSharp)
   const [refView, inView, entry] = useInView({
     threshold: 0.1,
     rootMargin: "-100px",
@@ -29,11 +38,19 @@ const ImageDuo = ({
   return (
     <div className="slice__imageDuo slice">
       <div className="slice__imageDuo--left opacity-0" ref={refView}>
-        <img src={leftImage.url} alt={leftImage?.alt} />
+        <Img
+          fluid={leftImageSharp.childImageSharp.fluid}
+          alt={leftImage?.alt}
+        />
+
         {leftName && <div className="credit">{leftName}</div>}
       </div>
       <div className="slice__imageDuo--right opacity-0" ref={refView2}>
-        <img src={rightImage.url} alt={rightImage?.alt} />
+        <Img
+          fluid={rightImageSharp.childImageSharp.fluid}
+          alt={rightImage?.alt}
+        />
+
         {rightName && <div className="credit">{rightName}</div>}
       </div>
     </div>

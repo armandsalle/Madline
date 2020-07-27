@@ -24,10 +24,18 @@ module.exports = {
         repositoryName: process.env.PRISMIC_REPOSITORY_NAME,
         defaultLang: "fr-fr",
         accessToken: process.env.PRISMIC_ACCESS_TOKEN,
+        sharpKeys: [
+          /image|photo|picture/, // (default)
+          "profilepic",
+          "thumbnail",
+          "leftImage",
+          "rightImage",
+          "imageFull",
+          "imageLandscape",
+          "imagePortrait",
+        ],
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -58,5 +66,7 @@ module.exports = {
         ],
       },
     },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
   ],
 }

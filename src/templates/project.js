@@ -37,6 +37,7 @@ const Project = ({
         place={data.place}
         description={data.description}
         thumbnail={data.thumbnail}
+        thumbnailSharp={data.thumbnailSharp}
         fullHeight={true}
       />
       <ProjectSlices slices={data.body} />
@@ -65,6 +66,13 @@ export const projectQuery = graphql`
             date
             place
             thumbnail
+            thumbnailSharp {
+              childImageSharp {
+                fluid(quality: 100) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
             categorie
             description
             pageTitle
@@ -78,6 +86,13 @@ export const projectQuery = graphql`
                 type
                 primary {
                   imagePortrait
+                  imagePortraitSharp {
+                    childImageSharp {
+                      fluid {
+                        ...GatsbyImageSharpFluid_withWebp
+                      }
+                    }
+                  }
                   name
                 }
               }
@@ -92,6 +107,13 @@ export const projectQuery = graphql`
                 type
                 primary {
                   imageLandscape
+                  imageLandscapeSharp {
+                    childImageSharp {
+                      fluid {
+                        ...GatsbyImageSharpFluid_withWebp
+                      }
+                    }
+                  }
                   name
                 }
               }
@@ -99,8 +121,22 @@ export const projectQuery = graphql`
                 type
                 primary {
                   leftImage
+                  leftImageSharp {
+                    childImageSharp {
+                      fluid {
+                        ...GatsbyImageSharpFluid_withWebp
+                      }
+                    }
+                  }
                   leftName
                   rightImage
+                  rightImageSharp {
+                    childImageSharp {
+                      fluid {
+                        ...GatsbyImageSharpFluid_withWebp
+                      }
+                    }
+                  }
                   rightName
                 }
               }
@@ -108,6 +144,13 @@ export const projectQuery = graphql`
                 type
                 primary {
                   imageFull
+                  imageFullSharp {
+                    childImageSharp {
+                      fluid {
+                        ...GatsbyImageSharpFluid_withWebp
+                      }
+                    }
+                  }
                   name
                 }
               }
