@@ -274,6 +274,8 @@
   padding: 8rem 0;
   min-height: unset;
   margin: 0 auto;
+  width: 100%;
+  display: block;
 
   @media screen and (max-width: $bp-medium) {
     padding: 4.5rem 0;

@@ -13,6 +13,13 @@ export const servicesQuery = graphql`
         pageDescription
         services {
           image
+          imageSharp {
+            childImageSharp {
+              fluid(maxWidth: 500, quality: 100) {
+                ...GatsbyImageSharpFluid_noBase64
+              }
+            }
+          }
           icone
           title
           subTitle

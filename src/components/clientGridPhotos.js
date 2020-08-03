@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import cn from "classnames"
+import Img from "gatsby-image"
 
 const ClientGridPhotos = ({ photos }) => {
   return (
@@ -14,7 +15,10 @@ const ClientGridPhotos = ({ photos }) => {
             })}
             key={index}
           >
-            <img src={photo.image.url} alt={photo.image?.alt} />
+            <Img
+              fluid={photo.imageSharp.childImageSharp.fluid}
+              alt={photo.image?.alt}
+            />
           </div>
         )
       })}

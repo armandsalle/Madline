@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import gsap from "gsap"
 import { useInView } from "react-intersection-observer"
 import { Link } from "gatsby"
+import Img from "gatsby-image"
 import lock from "../images/lock.svg"
 
 const ProjectPreview = ({
@@ -10,6 +11,7 @@ const ProjectPreview = ({
   date,
   place,
   thumbnail,
+  thumbnailSharp,
   title,
   index,
   _meta: { uid },
@@ -67,7 +69,10 @@ const ProjectPreview = ({
         to={isPrivate ? `/gallery/private/${uid}` : `/gallery/${uid}`}
         className="thumbnail"
       >
-        <img src={thumbnail.url} alt={thumbnail?.alt} />
+        <Img
+          fluid={thumbnailSharp.childImageSharp.fluid}
+          alt={thumbnail?.alt}
+        />
       </Link>
     </div>
   )

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react"
+import Img from "gatsby-image"
 import { useInView } from "react-intersection-observer"
 import PropTypes from "prop-types"
 import gsap from "gsap"
@@ -6,6 +7,7 @@ import RichText from "../components/richText"
 
 const ServiceItem = ({
   image,
+  imageSharp,
   icone,
   title,
   subTitle,
@@ -58,7 +60,7 @@ const ServiceItem = ({
         </div>
       </div>
       <div className="service-item__image" ref={inViewRef2}>
-        <img src={image.url} alt={image?.alt} />
+        <Img fluid={imageSharp.childImageSharp.fluid} alt={image?.alt} />
       </div>
     </div>
   )

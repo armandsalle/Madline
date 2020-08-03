@@ -71,6 +71,13 @@ export const galleryQuery = graphql`
             date
             place
             thumbnail
+            thumbnailSharp {
+              childImageSharp {
+                fluid(maxWidth: 500, quality: 100) {
+                  ...GatsbyImageSharpFluid_noBase64
+                }
+              }
+            }
             categorie
             _meta {
               uid
