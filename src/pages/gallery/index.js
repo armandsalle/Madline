@@ -73,8 +73,8 @@ export const galleryQuery = graphql`
             thumbnail
             thumbnailSharp {
               childImageSharp {
-                fluid(maxWidth: 500, quality: 100) {
-                  ...GatsbyImageSharpFluid_noBase64
+                fluid(maxWidth: 400, quality: 70) {
+                  ...GatsbyImageSharpFluid
                 }
               }
             }
