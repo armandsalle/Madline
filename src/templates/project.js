@@ -88,7 +88,7 @@ export const projectQuery = graphql`
                   imagePortrait
                   imagePortraitSharp {
                     childImageSharp {
-                      fluid(maxWidth: 400, quality: 60) {
+                      fluid(maxWidth: 400, quality: 70) {
                         ...GatsbyImageSharpFluid
                       }
                     }
@@ -109,7 +109,7 @@ export const projectQuery = graphql`
                   imageLandscape
                   imageLandscapeSharp {
                     childImageSharp {
-                      fluid(maxWidth: 400, quality: 60) {
+                      fluid(maxWidth: 500, quality: 70) {
                         ...GatsbyImageSharpFluid
                       }
                     }
@@ -123,7 +123,7 @@ export const projectQuery = graphql`
                   leftImage
                   leftImageSharp {
                     childImageSharp {
-                      fluid(maxWidth: 400, quality: 60) {
+                      fluid(maxWidth: 400, quality: 70) {
                         ...GatsbyImageSharpFluid
                       }
                     }
@@ -132,7 +132,7 @@ export const projectQuery = graphql`
                   rightImage
                   rightImageSharp {
                     childImageSharp {
-                      fluid(maxWidth: 400, quality: 60) {
+                      fluid(maxWidth: 400, quality: 70) {
                         ...GatsbyImageSharpFluid
                       }
                     }
@@ -146,7 +146,7 @@ export const projectQuery = graphql`
                   imageFull
                   imageFullSharp {
                     childImageSharp {
-                      fluid(maxWidth: 400, quality: 60) {
+                      fluid(maxWidth: 500, quality: 75) {
                         ...GatsbyImageSharpFluid
                       }
                     }

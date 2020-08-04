@@ -13,7 +13,6 @@ const ImageDuo = ({
     rightName,
   },
 }) => {
-  console.log(leftImageSharp)
   const [refView, inView, entry] = useInView({
     threshold: 0.1,
     rootMargin: "-100px",
