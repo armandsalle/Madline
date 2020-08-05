@@ -15,22 +15,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 2vw;
+    margin-right: 2vh;
+
+    @media screen and (max-width: 1300px) {
+      margin-right: 2vw;
+    }
 
     @media screen and (max-width: $bp-medium) {
       margin-right: 0;
       margin-top: 2rem;
-    }
-
-    @media screen and (max-width: $bp-medium) {
       width: 100%;
     }
 
     .img-block {
-      width: 19vw;
-      max-height: 50vh;
+      width: 30vh;
+      max-height: 45vh;
       position: relative;
       overflow: hidden;
+
+      @media screen and (max-width: 1300px) {
+        width: 19vw;
+      }
 
       @media screen and (max-width: $bp-medium) {
         width: 20rem;
@@ -50,7 +55,11 @@
     }
 
     .col-left {
-      margin-left: 2vw;
+      margin-left: 2vh;
+
+      @media screen and (max-width: 1300px) {
+        margin-left: 2vw;
+      }
 
       @media screen and (max-width: $bp-medium) {
         margin-left: 2rem;
@@ -58,7 +67,11 @@
 
       .img-block {
         &:first-of-type {
-          margin-bottom: 2vw;
+          margin-bottom: 2vh;
+
+          @media screen and (max-width: 1300px) {
+            margin-bottom: 2vw;
+          }
 
           @media screen and (max-width: $bp-medium) {
             margin-bottom: 2rem;
