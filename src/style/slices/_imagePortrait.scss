@@ -1,24 +1,17 @@
 .slice__imagePortrait {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 80rem;
 
-    max-width: 80rem;
+  .img-container {
+    transition: opacity .3s ease-in-out;
+  }
 
-    // .gatsby-image-wrapper {
-  //     margin: 0 auto;
-  //     display: block;
-  // }
-
-    // img {
-    //     width: 100%;
-    //     transition: opacity .3s ease-in-out;
-    // }
-
-    .credit {
-        margin-top: 1rem;
-        margin-left: auto;
-        font-size: 1.2rem;
-        line-height: 1.7;
-    }
+  .credit {
+    margin-top: 1rem;
+    margin-left: auto;
+    font-size: 1.2rem;
+    line-height: 1.7;
+  }
 }

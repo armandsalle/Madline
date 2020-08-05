@@ -6,24 +6,26 @@ import { useInView } from "react-intersection-observer"
 const ImagePortrait = ({
   primary: { imagePortrait, imagePortraitSharp, name },
 }) => {
-  // const [refView, inView, entry] = useInView({
-  //   threshold: 0.1,
-  //   rootMargin: "-100px",
-  //   triggerOnce: true,
-  // })
+  const [refView, inView, entry] = useInView({
+    threshold: 0.1,
+    rootMargin: "-100px",
+    triggerOnce: true,
+  })
 
-  // useEffect(() => {
-  //   if (inView) {
-  //     entry.target.classList.remove("opacity-0")
-  //   }
-  // }, [inView, entry])
+  useEffect(() => {
+    if (inView) {
+      entry.target.classList.remove("opacity-0")
+    }
+  }, [inView, entry])
 
   return (
     <div className="slice__imagePortrait slice">
-      <Img
-        fluid={imagePortraitSharp.childImageSharp.fluid}
-        alt={imagePortrait?.alt}
-      />
+      <div className="opacity-0 img-container" ref={refView}>
+        <Img
+          fluid={imagePortraitSharp.childImageSharp.fluid}
+          alt={imagePortrait?.alt}
+        />
+      </div>
       {name && <div className="credit">{name}</div>}
     </div>
   )

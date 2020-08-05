@@ -4,13 +4,12 @@
     justify-content: center;
     width: 100%;
 
-    div {
+    .img-container {
         transition: opacity .3s ease-in-out;
     }
 
     img {
         width: 100%;
-
     }
 
     .credit {

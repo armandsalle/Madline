@@ -20,7 +20,11 @@ const ImageLandscape = ({
 
   return (
     <div className="slice__imageLandscape slice">
-      <div className="opacity-0" ref={refView} style={{ flex: "0 0 auto" }}>
+      <div
+        className="opacity-0 img-container"
+        ref={refView}
+        style={{ flex: "0 0 auto" }}
+      >
         <Img
           fluid={imageLandscapeSharp.childImageSharp.fluid}
           alt={imageLandscape?.alt}
