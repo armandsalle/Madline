@@ -17,7 +17,7 @@ const About = ({ aboutTitle, aboutText, backgroundImage, state }) => {
     })
 
     const tl = gsap.timeline({ paused: true })
-    tl.to(".about", { opacity: 1, duration: 0.1, ease: "power3.inOut" }).to(
+    tl.to(".about", { opacity: 1, duration: 0.3, ease: "power3.inOut" }).to(
       [".about .content h2", ".about .content .richtext"],
       {
         opacity: 1,
@@ -43,7 +43,7 @@ const About = ({ aboutTitle, aboutText, backgroundImage, state }) => {
       ease: "power3.inOut",
       duration: 0.3,
     })
-      .to(".about", { opacity: 0, duration: 0.1, ease: "power3.inOut" })
+      .to(".about", { opacity: 0, duration: 0.3, ease: "power3.inOut" })
       .set(".about", { display: "none" })
 
     return tl

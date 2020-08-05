@@ -18,24 +18,28 @@ const Nav = ({ categoriesList, state, closeModals }) => {
 
   const showMenu = () => {
     gsap.set(".nav", { display: "flex", opacity: 0 })
+    gsap.set(".nav-img", { opacity: 0 })
     gsap.set([".nav__list li p", ".nav__list li a"], {
       opacity: 0,
       y: 100,
     })
 
     const tl = gsap.timeline({ paused: true })
-    tl.to(".nav", { opacity: 1, duration: 0.1, ease: "power3.inOut" }).to(
-      [".nav__list li p", ".nav__list li a"],
-      {
-        opacity: 1,
-        y: 0,
-        stagger: {
-          amount: 0.15,
+    tl.to(".nav", { opacity: 1, duration: 0.2, ease: "power3.inOut" })
+      .to(".nav-img", { opacity: 1, duration: 0.3, ease: "power3.inOut" })
+      .to(
+        [".nav__list li p", ".nav__list li a"],
+        {
+          opacity: 1,
+          y: 0,
+          stagger: {
+            amount: 0.15,
+          },
+          ease: "power3.inOut",
+          duration: 0.5,
         },
-        ease: "power3.inOut",
-        duration: 0.5,
-      }
-    )
+        "-=0.2"
+      )
 
     return tl
   }
@@ -50,7 +54,7 @@ const Nav = ({ categoriesList, state, closeModals }) => {
       ease: "power3.inOut",
       duration: 0.3,
     })
-      .to(".nav", { opacity: 0, duration: 0.1, ease: "power3.inOut" })
+      .to(".nav", { opacity: 0, duration: 0.3, ease: "power3.inOut" })
       .set(".nav", { display: "none" })
 
     return tl

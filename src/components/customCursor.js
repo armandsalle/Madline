@@ -2,21 +2,19 @@ import React, { useEffect, useRef, useContext } from "react"
 import cn from "classnames"
 import { CursorContext } from "../context/cursorContext"
 
+const followCursor = ({ clientX, clientY }, el) => {
+  el.style.transform = `translate(${clientX - 15}px, ${clientY - 17.5}px )`
+}
+
 const CustomCursor = () => {
   const { cursor } = useContext(CursorContext)
   const cursorTag = useRef(null)
 
   useEffect(() => {
     const el = cursorTag.current
-    document.addEventListener("mousemove", ({ clientX, clientY }) => {
-      el.style.left = `${clientX - 15}px`
-      el.style.top = `${clientY - 17.5}px`
-    })
+    document.addEventListener("mousemove", e => followCursor(e, el))
     return () => {
-      document.removeEventListener("mousemove", ({ clientX, clientY }) => {
-        el.style.left = `${clientX - 15}px`
-        el.style.top = `${clientY - 17.5}px`
-      })
+      document.removeEventListener("mousemove", e => followCursor(e, el))
     }
   }, [cursorTag])
 
