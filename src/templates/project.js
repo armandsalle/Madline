@@ -146,7 +146,7 @@ export const projectQuery = graphql`
                   imageFull
                   imageFullSharp {
                     childImageSharp {
-                      fluid(maxWidth: 500, quality: 75) {
+                      fluid(maxWidth: 1000, quality: 75) {
                         ...GatsbyImageSharpFluid
                       }
                     }
