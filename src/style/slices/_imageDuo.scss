@@ -4,6 +4,12 @@
     align-items: flex-start;
     width: 100%;
 
+    @media screen and (max-width: $bp-medium) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
     &--left,
     &--right {
         transition: opacity .3s ease-in-out;
@@ -14,6 +20,9 @@
         flex-direction: column;
         justify-content: center;
 
+        @media screen and (max-width: $bp-medium) {
+            width: 100%;
+        }
     }
 
     &--right {
