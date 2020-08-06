@@ -105,6 +105,7 @@ const Nav = ({ categoriesList, state, closeModals }) => {
         ".nav__gallery p",
         {
           x: 0,
+          display: "inline-block",
         },
         "-=0.3"
       )
