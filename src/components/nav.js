@@ -73,6 +73,7 @@ const Nav = ({ categoriesList, state, closeModals }) => {
     })
       .to(".nav__gallery p", {
         xPercent: `${100 - +v}`,
+        display: "block",
       })
       .from(
         categoriesUl.current.children,
